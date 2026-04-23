@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Cairo');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 18px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, Tahoma, Verdana, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+    background: none;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 4px;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+    background-color: var(--menu-color);
+    position: fixed;
+    background-position: top right;
+    background-size: 510px auto;
+    background-repeat: repeat;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* for dev checking */
+    /*--safe-area-inset-bottom: 32px;*/
+    --safe-area-inset-bottom: env(safe-area-inset-bottom, 32px);
+}
+
+/* класс для всего текста, что может быть изменен при выборе другого языка */
+.text_translate {
+}
+
+@keyframes show {
+    from {
+        filter: blur(4px);
+    }
+    to {
+        filter: none;
+    }
+}
+
+.content_editable,
+.content_editable * {
+    outline: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    font-style: normal !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, Tahoma, Verdana, sans-serif !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-user-select: text !important;
+    user-select: text !important;
+    cursor: text;
+
+    font-weight: 490 !important;
+    font-size: 15px !important;
+    color: white !important;
+}
