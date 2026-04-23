@@ -1,6 +1,6 @@
 import { bindActionCreators, configureStore } from '@reduxjs/toolkit';
 import { AppActions, AppReducers } from './app/app.slice.ts';
-import {type TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import { type TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({
     reducer: {

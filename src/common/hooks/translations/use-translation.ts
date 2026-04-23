@@ -8,7 +8,7 @@ import CH from './languages/zh/translation.json';
 import EN from './languages/en/translation.json';
 import ES from './languages/es/translation.json';
 import RU from './languages/ru/translation.json';
-import {useAppSelector} from "../../store";
+import { useAppSelector } from '../../store';
 
 export const resources = {
     ar: {

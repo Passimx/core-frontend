@@ -1,10 +1,13 @@
-function App() {
+import AppRouter from './common/routes/app-router.tsx';
+import { store } from './common/store';
+import { Provider } from 'react-redux';
 
-  return (
-    <>
-        Hello World!
-    </>
-  )
+function App() {
+    return (
+        <Provider store={store}>
+            <AppRouter />
+        </Provider>
+    );
 }
 
-export default App
+export default App;

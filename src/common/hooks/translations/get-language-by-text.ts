@@ -7,8 +7,6 @@ import RU from './languages/ru/translation.json';
 const symbolMap = new Map<string, string>();
 const langMaps = new Map<string, Set<string>>();
 
-
-
 const languages = [
     ['es-ES', ES],
     ['en-US', EN],
