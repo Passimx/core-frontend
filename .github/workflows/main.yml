@@ -31,6 +31,3 @@ jobs:
     permissions:
       contents: write
       packages: write
-
-
-npm i @semantic-release/changelog --save-dev
