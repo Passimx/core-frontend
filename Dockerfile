@@ -7,7 +7,7 @@ RUN npm install -g npm@10.4.0
 FROM base AS dependencies
 WORKDIR /app
 COPY ./package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --ignore-scripts
 
 # Stage 3: build
 FROM base AS build
