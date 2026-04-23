@@ -7,8 +7,9 @@
         "dev": "vite",
         "format": "prettier . --write",
         "build": "tsc -b && vite build",
-        "lint": "eslint .",
-        "preview": "vite preview"
+        "lint": "eslint \"{src,apps,libs}/**/*.ts\" --fix",
+        "preview": "vite preview",
+        "prepare": "husky install"
     },
     "dependencies": {
         "i18next": "^26.0.6",
