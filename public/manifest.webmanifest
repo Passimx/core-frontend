@@ -3,10 +3,10 @@
     "short_name": "PassimX VPN",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#062846",
+    "background_color": "#0a4375",
     "lang": "ru-RU",
     "scope": "/",
-    "theme_color": "#062846",
+    "theme_color": "#0a4375",
     "icons": [
         { "sizes": "1024x1024", "src": "/assets/icons/1024.png", "type": "image/png", "purpose": "any" },
         { "sizes": "512x512", "src": "/assets/icons/512.png", "type": "image/png", "purpose": "any" },
