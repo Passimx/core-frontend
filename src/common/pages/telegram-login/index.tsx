@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styles from './index.module.css';
 import { PageTitle } from '../../components/page-title';
 import { useTranslation } from 'react-i18next';
@@ -10,18 +10,31 @@ import { IoCopyOutline } from 'react-icons/io5';
 import { Envs } from '../../config/envs/envs.ts';
 import crypto from 'crypto';
 import { Button } from '../../components/button';
+import { login } from '../../api/auth';
 
 export const TelegramLogin: FC = () => {
     const { t } = useTranslation();
     const { postMessageToBroadCastChannel } = useAppAction();
-    const secret = crypto.createHash('sha256').update(window.crypto.randomUUID()).digest('hex');
-    const log = `/loginFromWeb=${secret}`;
 
-    const confirm = () => {};
+    const [key, setKey] = useState<string>(
+        crypto.createHash('sha256').update(window.crypto.randomUUID()).digest('hex'),
+    );
 
-    // const telegramUser = window.Telegram?.WebApp.initDataUnsafe?.user;
-    // if (!telegramUser) window.open('https://t.me/passimx_vpn_test_bot?start=login', '_blank');
-    // if (!telegramUser) window.open('tg://resolve?domain=passimx_vpn_bot&start=login_abc123', '_blank');
+    const confirm = async () => {
+        const response = await login({ key });
+        if (!response.success) {
+            postMessageToBroadCastChannel({ event: EventsEnum.SHOW_TEXT, data: 'text5' });
+            return setKey(crypto.createHash('sha256').update(window.crypto.randomUUID()).digest('hex'));
+        }
+
+        const data = response.data;
+        postMessageToBroadCastChannel({
+            event: EventsEnum.UPDATE_USER,
+            data: { token: data.token },
+        });
+    };
+
+    const message = `/loginFromWeb=${key}`;
 
     return (
         <div className={styles.background}>
@@ -33,14 +46,14 @@ export const TelegramLogin: FC = () => {
                     <div
                         className={styles.log_item}
                         onClick={() => {
-                            navigator.clipboard.writeText(log);
+                            navigator.clipboard.writeText(message);
                             postMessageToBroadCastChannel({ event: EventsEnum.SHOW_TEXT, data: 'copied' });
                         }}
                     >
                         <div className={styles.log_item_copy}>
                             <IoCopyOutline className={styles.log_item_logo} />
                         </div>
-                        <div>{log}</div>
+                        <div>{message}</div>
                     </div>
                     <br />
                     {t('text2')}

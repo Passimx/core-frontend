@@ -2,8 +2,24 @@
     background-color: var(--color-4);
     padding: 8px;
     display: grid;
-    justify-content: right;
-    grid-template-columns: auto;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 36px;
+    /*justify-content: right;*/
+    /*grid-template-columns: auto;*/
+
+    .background_4{
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+    }
+
+    .background_3{
+        cursor: pointer;
+        font-size: 36px;
+        color: var(--color-5);
+    }
 
     .background_2{
         background-color: var(--color-5);

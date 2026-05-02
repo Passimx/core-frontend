@@ -10,11 +10,13 @@ import { Header } from '../header';
 import { TopElements } from '../top-elements';
 import { useBroadcastChannel } from '../../hooks/use-broadcast-channel.ts';
 import { Pages } from '../pages';
+import { useUpdateUser } from '../../hooks/use-update-user.hook.ts';
 
 export const App: FC<ChildrenPropsType> = () => {
     useIsIos();
     useIsPhone();
     useSettings();
+    useUpdateUser();
     useBroadcastChannel();
 
     const lang = useTranslation();

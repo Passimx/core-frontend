@@ -3,22 +3,14 @@ import moment from 'moment/min/moment-with-locales';
 
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import AR from './languages/ar/translation.json';
 import CH from './languages/zh/translation.json';
 import EN from './languages/en/translation.json';
-import ES from './languages/es/translation.json';
 import RU from './languages/ru/translation.json';
 import { useAppSelector } from '../../store';
 
 export const resources = {
-    ar: {
-        translation: AR,
-    },
     en: {
         translation: EN,
-    },
-    es: {
-        translation: ES,
     },
     ru: {
         translation: RU,
