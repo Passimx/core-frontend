@@ -10,6 +10,8 @@
   "create_by_passimx": "Create a new account",
   "creation_account": "Account creation",
   "telegram_login": "Telegram login",
+  "copy_link": "Copy link",
+  "share": "Share",
 
   "text1": "To log in, you need to verify your account by sending a message\n",
   "text2": "to our Telegram bot",

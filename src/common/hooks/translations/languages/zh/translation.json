@@ -10,6 +10,8 @@
   "create_by_passimx": "创建新账户",
   "creation_account": "创建账户",
   "telegram_login": "通过 Telegram 登录",
+  "copy_link": "复制链接",
+  "share": "分享",
 
   "text1": "要登录，您需要发送消息以验证您的账户\n",
   "text2": "到我们的 Telegram 机器人",
