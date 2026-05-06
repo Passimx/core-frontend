@@ -1,4 +1,6 @@
+import { MouseEventHandler } from 'react';
+
 export type PropsType = {
     text: string;
-    onClick: () => void;
+    onClick: MouseEventHandler<HTMLDivElement>;
 };
