@@ -32,11 +32,11 @@
         }
 
         .button:active{
-            background-color: #08365e;
+            background-color: var(--color-3);
         }
 
         .copy_button{
-            background-color: #0098EA;
+            background-color: var(--color-5);
         }
 
         .share_button{}

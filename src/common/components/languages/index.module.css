@@ -4,7 +4,7 @@
 
 .language_item{
     padding: 12px;
-    background-color: #08365e;
+    background-color: var(--color-3);
     border-bottom: 1px solid #0c518d;
     display: grid;
     grid-template-columns: 1fr auto;

@@ -11,7 +11,10 @@
   "creation_account": "创建账户",
   "telegram_login": "通过 Telegram 登录",
   "copy_link": "复制链接",
+  "copy_key": "复制密钥",
   "share": "分享",
+  "price": "价格",
+  "days": "天",
 
   "text1": "要登录，您需要发送消息以验证您的账户\n",
   "text2": "到我们的 Telegram 机器人",
@@ -40,7 +43,12 @@
   "active_until": "有效期至",
   "change_server": "更换服务器国家",
   "extend_key": "续期密钥",
+  "yookassa_not_found": "YooKassa 支付暂时不可用。请尝试其他支付方式。",
+  "error": "错误",
+  "free_time_used": "试用期已使用",
 
+  "t1": "余额不足",
+  "t2": "服务暂时不可用，请稍后再试。",
   "t8": "卢布",
   "t9": "人民币",
   "t10": "¥",

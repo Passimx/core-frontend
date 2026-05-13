@@ -27,7 +27,7 @@ export const Profile: FC = () => {
             <div className={styles.div1} onClick={onWallet}>
                 <Card>
                     <div className={styles.div2}>
-                        <div className={styles.div3} style={{ backgroundColor: '#439fef' }}>
+                        <div className={styles.div3} style={{ backgroundColor: 'var(--color-5)' }}>
                             <IoWallet className={styles.div4} />
                         </div>
                         <div>{t('text7')}</div>
