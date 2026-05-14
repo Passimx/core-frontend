@@ -47,6 +47,8 @@
   "yookassa_not_found": "Payment via YooKassa is temporarily unavailable. Please try another payment method.",
   "error": "Error",
   "free_time_used": "Trial period has already been used",
+  "buy_key": "Buy key",
+  "support": "Support",
 
   "t1": "Not enough credit.",
   "t2": "Service temporarily unavailable. Please try again later",
@@ -60,6 +62,11 @@
   "t15": "Enter amount",
   "t16": "Sberbank",
   "t17": "Error",
-  "t18": "Мои ключи",
-  "t19": "Country"
+  "t18": "My keys",
+  "t19": "Country",
+  "t20": "Connection app",
+  "t21": "🚚 Base tariff",
+  "t22": "🛡️ Premium tariff",
+  "t23": "A reliable workhorse: stable access without traffic limits. Great for everyday use.",
+  "t24": "It works:\n - Under the most severe blockings\n - At factories\n - During allowlists/whitelists\n\n It has a traffic limit — so it’s recommended to buy it together with the regular VPN tariff."
 }

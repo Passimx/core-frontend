@@ -8,6 +8,8 @@ import { EventsEnum } from '../../../../types/events/events.enum.ts';
 import { useSetPage } from '../../../../hooks/use-set-page.hook.ts';
 import { Extending } from '../extending';
 import { ChangeServer } from '../change-server';
+import { IoIosAddCircle } from 'react-icons/io';
+import { SelectTariff } from '../select-tariff';
 
 export const Keys: FC = () => {
     const { t } = useTranslation();
@@ -19,6 +21,17 @@ export const Keys: FC = () => {
         <div className={styles.background}>
             <PageTitle title={t('t18')} />
             <div className={styles.div1}>
+                <div className={styles.div1o} onClick={() => setPage(<SelectTariff />)}>
+                    <Card>
+                        <div className={styles.div2o}>
+                            <div className={styles.div3o} style={{ backgroundColor: '#00b300' }}>
+                                <IoIosAddCircle className={styles.div4o} />
+                            </div>
+                            <div>{t('buy_key')}</div>
+                        </div>
+                    </Card>
+                </div>
+
                 {keys?.map(({ id, serverCode, status, expiresAt, key }) => (
                     <div key={id}>
                         <Card>

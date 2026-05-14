@@ -4,6 +4,28 @@
     .div1{
         display: grid;
 
+        .div1o{
+            cursor: pointer;
+
+            .div2o{
+                display: grid;
+                grid-template-columns: auto 1fr;
+                align-items: center;
+
+                .div3o{
+                    padding: 4px;
+                    border-radius: 8px;
+                    display: grid;
+                    align-items: center;
+                    justify-items: center;
+
+                    .div4o{
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+
         .div5{
             display: grid;
 

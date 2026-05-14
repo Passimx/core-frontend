@@ -6,10 +6,17 @@
     grid-auto-columns: 100%;
     width: calc(100% - var(--padding) * 2);
     overflow-y: hidden;
-    overflow-x: hidden;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
     padding: var(--padding);
 
     *{
         gap: var(--padding);
     }
+}
+
+#background::-webkit-scrollbar {
+    display: none;
 }

@@ -1,0 +1,16 @@
+.background{
+    display: grid;
+
+    .div1{
+        cursor: pointer;
+
+        .div2{
+            display: grid;
+
+            .div3{
+
+                font-weight: 900;
+            }
+        }
+    }
+}

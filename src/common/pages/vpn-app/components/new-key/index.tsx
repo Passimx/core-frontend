@@ -1,22 +1,17 @@
 import { FC, useEffect, useState } from 'react';
 import styles from './index.module.css';
 import { PropsType } from './types/props.type.ts';
-import { extendKey, getTariffs } from '../../../../api/tariffs';
+import { getTariffs } from '../../../../api/tariffs';
 import { TariffsResponse } from '../../../../types/api/tariffs.ts';
 import { Card } from '../../../../components/card';
 import { convert, formatNumber } from '../../../wallet/helper.ts';
-import { useAppAction, useAppSelector } from '../../../../store';
+import { useAppSelector } from '../../../../store';
 import { useTranslation } from 'react-i18next';
 import { RotateLoading } from '../../../../components/rotate-loading';
-import { EventsEnum } from '../../../../types/events/events.enum.ts';
-import { useScrollPage } from '../../../../hooks/use-scroll-page.hook.ts';
 
-export const Extending: FC<PropsType> = ({ kind, keyId }) => {
+export const NewKey: FC<PropsType> = ({ kind }) => {
     const { t } = useTranslation();
-    const { postMessageToBroadCastChannel, setStateUser } = useAppAction();
     const [tariffs, setTariffs] = useState<TariffsResponse[]>([]);
-    const scrollPage = useScrollPage();
-    const keys = useAppSelector((state) => state.user.keys)!;
     const currencyPrice = useAppSelector((state) => state.app.settings?.currencyPrice)!;
 
     useEffect(() => {
@@ -26,25 +21,13 @@ export const Extending: FC<PropsType> = ({ kind, keyId }) => {
         };
 
         updateTariffs();
-    }, [kind, keyId]);
-
-    const onPay = async (tariffId: string) => {
-        setTariffs([]);
-        const result = await extendKey({ keyId, tariffId });
-
-        if (result.success) {
-            const updatedKeys = keys.map((key) => (key.id === result.data.id ? result.data : key));
-            setStateUser({ keys: updatedKeys });
-        } else postMessageToBroadCastChannel({ event: EventsEnum.SHOW_TEXT, data: result.data });
-
-        scrollPage();
-    };
+    }, [kind]);
 
     return (
         <div className={styles.background}>
             {tariffs?.length ? (
                 tariffs?.map(({ id, price, expirationDays }) => (
-                    <div key={id} className={styles.div0} onClick={() => onPay(id)}>
+                    <div key={id} className={styles.div0}>
                         <Card>
                             <div className={styles.div1}>
                                 <div>
