@@ -18,32 +18,31 @@ export const Pages: FC = () => {
     useEffect(() => {
         const element = document.getElementById(styles.background);
         if (!element) return;
-        let touched = false;
 
         const onScrollEnd = () => {
-            if (touched === false) return;
-            touched = false;
-
             const pageWidth = element.clientWidth;
+            const scrollLeft = element.scrollLeft;
+            const scrollWidth = element.scrollWidth;
 
-            console.log(pageWidth / 2);
+            if (pageWidth + scrollLeft === scrollWidth) return;
+            const leftSide = scrollWidth - scrollLeft - pageWidth < pageWidth / 2;
 
-            element.scrollTo({
-                left: element.scrollWidth - pageWidth - pageWidth + 8,
-                behavior: 'smooth',
-            });
-        };
-
-        const onTouched = () => {
-            touched = true;
+            if (leftSide)
+                element.scrollTo({
+                    left: element.scrollWidth,
+                    behavior: 'smooth',
+                });
+            else
+                element.scrollTo({
+                    left: element.scrollWidth - pageWidth - pageWidth + 8,
+                    behavior: 'smooth',
+                });
         };
 
         element.addEventListener('scrollend', onScrollEnd);
-        element.addEventListener('touchstart', onTouched);
 
         return () => {
             element.removeEventListener('scrollend', onScrollEnd);
-            element.removeEventListener('touchstart', onTouched);
         };
     }, [pages]);
 

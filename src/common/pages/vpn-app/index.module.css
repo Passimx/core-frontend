@@ -1,6 +1,16 @@
 .background{
     display: grid;
 
+    .div0{
+        display: grid;
+        align-items: center;
+        justify-items: center;
+
+        img{
+            width: 150px;
+        }
+    }
+
     .div1{
         cursor: pointer;
 

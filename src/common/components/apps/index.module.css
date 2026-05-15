@@ -8,10 +8,29 @@
         justify-items: center;
         cursor: pointer;
 
-        .div2 {
+        .div11{
+            background: linear-gradient(
+                    -45deg,
+                    #ff0080,
+                    #7928ca,
+                    #2afadf,
+                    #00c6ff
+            );
+            background-size: 400% 400%;
+            background-position: 50% 70%;
+
             width: 60px;
             height: 60px;
             border-radius: 15px;
+            display: grid;
+            justify-items: center;
+            cursor: pointer;
+
+            .div2 {
+                width: 60px;
+                height: 60px;
+                border-radius: 15px;
+            }
         }
 
         .div3 {
