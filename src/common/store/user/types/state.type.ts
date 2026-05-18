@@ -6,6 +6,7 @@ export type UserKeyType = {
     status: string;
     serverCode: string;
     serverId: string;
+    autoRenewEnabled: boolean;
 };
 
 export type BalanceAccountType = {

@@ -49,6 +49,8 @@
   "buy_key": "购买密钥",
   "support": "客服",
   "delete_key": "删除",
+  "enable_auto_renew": "开启自动续费",
+  "disable_auto_renew": "关闭自动续费",
 
   "t1": "余额不足",
   "t2": "服务暂时不可用，请稍后再试。",

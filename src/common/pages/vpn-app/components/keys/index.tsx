@@ -10,7 +10,7 @@ import { Extending } from '../extending';
 import { ChangeServer } from '../change-server';
 import { IoIosAddCircle } from 'react-icons/io';
 import { SelectTariff } from '../select-tariff';
-import { deleteKey } from '../../../../api/tariffs';
+import { changeAutoRenewKey, deleteKey } from '../../../../api/tariffs';
 
 export const Keys: FC = () => {
     const { t } = useTranslation();
@@ -20,6 +20,13 @@ export const Keys: FC = () => {
 
     const onDelete = async (keyId: string) => {
         const result = await deleteKey({ keyId });
+
+        if (result.success) setStateUser(result.data);
+        else postMessageToBroadCastChannel({ event: EventsEnum.SHOW_TEXT, data: result.data });
+    };
+
+    const onChangeAutoRenew = async (keyId: string) => {
+        const result = await changeAutoRenewKey({ keyId });
 
         if (result.success) setStateUser(result.data);
         else postMessageToBroadCastChannel({ event: EventsEnum.SHOW_TEXT, data: result.data });
@@ -40,7 +47,7 @@ export const Keys: FC = () => {
                     </Card>
                 </div>
 
-                {keys?.map(({ id, serverCode, status, expiresAt, key }) => (
+                {keys?.map(({ id, serverCode, status, expiresAt, key, autoRenewEnabled }) => (
                     <div key={id}>
                         <Card>
                             <div className={styles.div5}>
@@ -101,6 +108,13 @@ export const Keys: FC = () => {
                                         }}
                                     >
                                         <div className={styles.div13}>{t('copy_key')}</div>
+                                    </div>
+                                    <div className={styles.div12} onClick={() => onChangeAutoRenew(id)}>
+                                        <div
+                                            className={`${styles.div13} ${autoRenewEnabled ? styles.div14 : styles.div15}`}
+                                        >
+                                            {t(autoRenewEnabled ? 'disable_auto_renew' : 'enable_auto_renew')}
+                                        </div>
                                     </div>
                                     {status === 'expired' && (
                                         <div className={styles.div12} onClick={() => onDelete(id)}>

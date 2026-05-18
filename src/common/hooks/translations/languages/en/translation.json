@@ -50,6 +50,8 @@
   "buy_key": "Buy key",
   "support": "Support",
   "delete_key": "Delete key",
+  "enable_auto_renew": "Enable auto-renew",
+  "disable_auto_renew": "Disable auto-renew",
 
   "t1": "Not enough credit.",
   "t2": "Service temporarily unavailable. Please try again later",

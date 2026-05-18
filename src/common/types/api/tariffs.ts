@@ -18,6 +18,6 @@ export type CreateKeyBodyType = {
     tariffId: string;
 };
 
-export type DeleteKeyBodyType = {
+export type KeyIdBodyType = {
     keyId: string;
 };
