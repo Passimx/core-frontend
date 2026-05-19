@@ -4,7 +4,7 @@ import { PropsType } from './types/props.type.ts';
 
 export const Button: FC<PropsType> = ({ text, onClick }) => {
     return (
-        <div className={styles.background} onClick={onClick}>
+        <div className={`text_translate ${styles.background}`} onClick={onClick}>
             {text}
         </div>
     );

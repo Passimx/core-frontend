@@ -10,6 +10,8 @@ import { useAppSelector } from '../../store';
 import { BiSupport } from 'react-icons/bi';
 import vpnIcon from '../../../../public/assets/images/vpn-icon.png';
 import { Image } from '../../components/image';
+import { HiSpeakerphone } from 'react-icons/hi';
+import { RefProgram } from './components/ref-program';
 
 export const VpnApp: FC = () => {
     const { isIos, isPhone } = useAppSelector((state) => state.app);
@@ -49,6 +51,16 @@ export const VpnApp: FC = () => {
                             <IoKeySharp className={styles.div4} />
                         </div>
                         <div>{t('t18')}</div>
+                    </div>
+                </Card>
+            </div>
+            <div className={styles.div1} onClick={() => setPage(<RefProgram />)}>
+                <Card>
+                    <div className={styles.div2}>
+                        <div className={styles.div3} style={{ backgroundColor: '#ff4dd2' }}>
+                            <HiSpeakerphone className={styles.div4} />
+                        </div>
+                        <div>{t('ref_program')}</div>
                     </div>
                 </Card>
             </div>

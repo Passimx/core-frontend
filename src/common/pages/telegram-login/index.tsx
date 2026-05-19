@@ -6,11 +6,11 @@ import { Card } from '../../components/card';
 import { Link } from '../../components/link';
 import { EventsEnum } from '../../types/events/events.enum.ts';
 import { useAppAction } from '../../store';
-import { IoCopyOutline } from 'react-icons/io5';
 import { Envs } from '../../config/envs/envs.ts';
 import crypto from 'crypto';
 import { Button } from '../../components/button';
 import { login } from '../../api/auth';
+import { CopyText } from '../../components/copy-text';
 
 export const TelegramLogin: FC = () => {
     const { t } = useTranslation();
@@ -43,18 +43,7 @@ export const TelegramLogin: FC = () => {
                 <Card>
                     {t('text1')}
                     <br />
-                    <div
-                        className={styles.log_item}
-                        onClick={() => {
-                            navigator.clipboard.writeText(message);
-                            postMessageToBroadCastChannel({ event: EventsEnum.SHOW_TEXT, data: 'copied' });
-                        }}
-                    >
-                        <div className={styles.log_item_copy}>
-                            <IoCopyOutline className={styles.log_item_logo} />
-                        </div>
-                        <div>{message}</div>
-                    </div>
+                    <CopyText text={message} />
                     <br />
                     {t('text2')}
                     &nbsp;

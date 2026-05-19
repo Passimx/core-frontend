@@ -1,3 +1,7 @@
+.background{
+    display: grid;
+}
+
 .languages{
     min-width: 200px;
 }

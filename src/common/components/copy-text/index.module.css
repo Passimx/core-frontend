@@ -1,0 +1,13 @@
+.div1{
+    background-color: var(--color-5);
+    color: white;
+
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+
+    .div2{
+        display: grid;
+        justify-content: right;
+    }
+}

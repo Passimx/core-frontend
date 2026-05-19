@@ -34,10 +34,12 @@ export const Header: FC = () => {
                 <div></div>
             )}
             <div></div>
-            <div className={`${styles.background_2} text_translate`} onClick={onClickLang}>
-                <div className={styles.flag}> {t('language_native_flag')}</div>
-                <div>{t('language')}</div>
-            </div>
+            {!user.id && (
+                <div className={`${styles.background_2} text_translate`} onClick={onClickLang}>
+                    <div className={styles.flag}> {t('language_native_flag')}</div>
+                    <div>{t('language')}</div>
+                </div>
+            )}
         </div>
     );
 };
