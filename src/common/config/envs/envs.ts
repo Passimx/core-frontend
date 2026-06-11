@@ -16,6 +16,7 @@ type EnvsType = {
     settings?: Partial<SettingsType>;
     version: string;
     telegram: TelegramType;
+    appSalt: string;
 };
 
 export const Envs: EnvsType = {
@@ -25,4 +26,5 @@ export const Envs: EnvsType = {
     telegram: {
         botLink: import.meta.env.VITE_TG_BOT_LINK,
     },
+    appSalt: 'sha256',
 };

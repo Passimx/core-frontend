@@ -1,11 +1,11 @@
 import type { FC } from 'react';
-import { VpnApp } from '../vpn-app';
+import { Apps } from '../../components/apps';
 
 export const MainPage: FC = () => {
     return (
         <div>
-            {/*<Apps />*/}
-            <VpnApp />
+            <Apps />
+            {/*<VpnApp />*/}
         </div>
     );
 };

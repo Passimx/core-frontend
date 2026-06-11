@@ -10,7 +10,6 @@ export const Auth: FC<ChildrenPropsType> = ({ children }) => {
     const user = useAppSelector((state) => state.user);
 
     useEffect(() => {
-        console.log(user.id);
         if (!user.id) setStateApp({ pages: new Map([[TabEnum.MAIN, [<LoginPage />]]]) });
         else setStateApp({ pages: new Map([[TabEnum.MAIN, [<MainPage />]]]) });
     }, [user.id]);

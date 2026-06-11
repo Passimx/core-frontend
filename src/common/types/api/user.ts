@@ -17,3 +17,10 @@ export type UserResponse = {
 export type CreateAccountRequest = {
     languageCode: string;
 };
+
+export type CreatePassimXAccountRequest = {
+    rsaPublicKey: string;
+    encryptedRsaPrivateKey: string;
+    languageCode: string;
+    encryptionUserAgent: string;
+};

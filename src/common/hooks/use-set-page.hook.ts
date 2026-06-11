@@ -5,8 +5,8 @@ import { useScrollPage } from './use-scroll-page.hook.ts';
 
 export const useSetPage = () => {
     const { setStateApp } = useAppAction();
-    const activeTab = useAppSelector((state) => state.app.activeTab);
-    const pages = useAppSelector((state) => state.app.pages);
+    const activeTab = useAppSelector((state) => state.app.activeTab)!;
+    const pages = useAppSelector((state) => state.app.pages)!;
     const scrollPage = useScrollPage();
 
     return (element: JSX.Element) => {

@@ -29,7 +29,7 @@ export const AddMoneyPage: FC = () => {
     const checkBalance = () => {
         if (amount && amount > 0) return true;
 
-        postMessageToBroadCastChannel({ event: EventsEnum.SHOW_TEXT, data: t('t15') });
+        postMessageToBroadCastChannel({ event: EventsEnum.SHOW_TEXT, data: 't15' });
 
         const element = document.getElementById(id);
         element?.focus();

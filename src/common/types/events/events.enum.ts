@@ -1,7 +1,8 @@
 export enum EventsEnum {
     SHOW_TEXT = 'show_text',
-    UPDATE_SETTING = 'update_setting',
+
+    SET_STATE_APP = 'set_state_app',
+    SET_STATE_USER = 'set_state_user',
 
     LOGOUT = 'logout',
-    UPDATE_USER = 'update_user',
 }

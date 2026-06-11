@@ -11,16 +11,18 @@ export enum TabEnum {
     MAIN = 'main',
 }
 
-export type StateType = {
+export type AppStateType = {
     isOnline: boolean;
-    isPhone?: boolean;
+    isPhone: boolean;
     isStandalone: boolean;
-    isIos?: boolean;
-    settings?: SettingsType;
-
-    isActiveTab?: boolean;
-    foreground?: JSX.Element;
+    isIos: boolean;
+    isLoadedFromIndexDb: boolean;
 
     activeTab: TabEnum;
     pages: Map<TabEnum, JSX.Element[]>;
+    isActiveTab?: boolean;
+    foreground?: JSX.Element;
+
+    settings: SettingsType;
+    activeAccount: string;
 };

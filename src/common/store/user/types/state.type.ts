@@ -1,3 +1,5 @@
+import { SessionType } from '../../../types/sessions/session.type.ts';
+
 export type UserKeyType = {
     id: string;
     key: string;
@@ -20,8 +22,16 @@ export type BalanceAccountType = {
 
 export type UserStateType = {
     id: string;
-    token: string;
-    balanceAccount: BalanceAccountType;
     updatedAt: number;
+    aesKey: CryptoKey;
+    encryptedRsaPrivateKey: string;
+    encryptedToken: string;
+    rsaPublicKey: CryptoKey;
+
+    token: string;
+    rsaPrivateKey: CryptoKey;
+
+    balanceAccount: BalanceAccountType;
     keys: UserKeyType[];
+    sessions: SessionType[];
 };

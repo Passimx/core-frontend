@@ -7,7 +7,7 @@ type Logout = {
 };
 
 type UpdateUser = {
-    readonly event: EventsEnum.UPDATE_USER;
+    readonly event: EventsEnum.SET_STATE_USER;
     readonly data: Partial<UserStateType>;
 };
 

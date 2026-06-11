@@ -3,17 +3,17 @@ import { useAppAction } from '../store';
 import { EventsType } from '../types/events/event-data.type.ts';
 
 export const useAppEvents = () => {
-    const { changeSettings, logout, setStateUser } = useAppAction();
+    const { logout, setStateUser, setStateApp } = useAppAction();
 
     return async (dataEvent: EventsType) => {
         const { event, data } = dataEvent;
 
         switch (event) {
-            case EventsEnum.UPDATE_SETTING:
-                changeSettings(data);
-                break;
-            case EventsEnum.UPDATE_USER:
+            case EventsEnum.SET_STATE_USER:
                 setStateUser(data);
+                break;
+            case EventsEnum.SET_STATE_APP:
+                setStateApp(data);
                 break;
             case EventsEnum.LOGOUT:
                 logout();

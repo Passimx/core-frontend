@@ -7,9 +7,9 @@ export const useDeletePage = () => {
     const { pages, activeTab } = useAppSelector((state) => state.app);
 
     return () => {
-        const actualPages = pages.get(activeTab) || [];
+        const actualPages = pages!.get(activeTab!) || [];
         const newPages = [...actualPages];
         newPages.pop();
-        setStateApp({ pages: new Map<TabEnum, JSX.Element[]>([[activeTab, newPages]]) });
+        setStateApp({ pages: new Map<TabEnum, JSX.Element[]>([[activeTab!, newPages]]) });
     };
 };

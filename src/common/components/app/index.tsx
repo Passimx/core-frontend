@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import { useSettings } from '../../hooks/use-settings.hook.ts';
 import { useTranslation } from '../../hooks/translations/use-translation.ts';
 import { useIsIos } from '../../hooks/use-is-ios.hook.ts';
 import { useIsPhone } from '../../hooks/use-is-phone.hook.ts';
@@ -10,17 +9,27 @@ import { Header } from '../header';
 import { TopElements } from '../top-elements';
 import { useBroadcastChannel } from '../../hooks/use-broadcast-channel.ts';
 import { Pages } from '../pages';
-import { useUpdateUser } from '../../hooks/use-update-user.hook.ts';
+import { useLoadFromIndexDbHook } from '../../hooks/use-load-from-index-db.hook.ts';
+import { useMainTab } from '../../hooks/use-main-tab.hook.ts';
+import { RotateLoading } from '../rotate-loading';
+import { useAppSelector } from '../../store';
 
 export const App: FC<ChildrenPropsType> = () => {
+    const lang = useAppSelector((state) => state.app?.settings?.lang);
+
     useIsIos();
     useIsPhone();
-    useSettings();
-    useUpdateUser();
+    useMainTab();
+    useLoadFromIndexDbHook();
     useBroadcastChannel();
+    useTranslation();
 
-    const lang = useTranslation();
-    if (!lang) return <></>;
+    if (!lang)
+        return (
+            <div className={styles.background}>
+                <RotateLoading />
+            </div>
+        );
 
     return (
         <div className={styles.background}>

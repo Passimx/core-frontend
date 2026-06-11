@@ -16,7 +16,7 @@ export const Apps: FC = () => {
     const apps: AppType[] = [
         { id: 'asd', name: 't27', icon: vpnIcon, app: <VpnApp /> },
         { id: 'asd2', name: 't28', icon: chatsIcon, app: <Messenger /> },
-        { id: 'asd2', name: 't29', icon: callsIcon, app: <Messenger /> },
+        { id: 'asd3', name: 't29', icon: callsIcon, app: <Messenger /> },
     ];
 
     return (

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { UserStateType } from './types/state.type.ts';
+import { upsertAccountIndexDb } from './index-db/hooks.ts';
 
 const initialState: Partial<UserStateType> = {};
 
@@ -14,13 +15,19 @@ const UserSlice = createSlice({
             ][]) {
                 state[key] = value as never;
             }
-            localStorage.setItem('user', JSON.stringify(state));
+            upsertAccountIndexDb(state);
         },
 
         logout(state) {
             for (const [key] of Object.entries(state) as [keyof UserStateType, UserStateType[keyof UserStateType]][]) {
                 state[key] = undefined;
             }
+            // state.key && deleteAccountIndexDb(state.key);
+            // deleteAllChatsIndexDb();
+            // Envs.RSAKeys = undefined;
+            // localStorage.removeItem('keys');
+            // return {};
+
             localStorage.removeItem('user');
         },
     },

@@ -1,14 +1,15 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { SettingsType, type StateType, TabEnum } from './types/state.type.ts';
+import { createSlice, type PayloadAction, current } from '@reduxjs/toolkit';
+import { AppStateType, TabEnum } from './types/state.type.ts';
 import type { EventsType } from '../../types/events/event-data.type.ts';
-import { Envs } from '../../config/envs/envs.ts';
 import { JSX } from 'react';
+import { upsertAppIndexDb } from './index-db/hooks.ts';
 
 const channel = new BroadcastChannel('ws-channel');
 
-const initialState: StateType = {
+const initialState: Partial<AppStateType> = {
     isOnline: navigator.onLine,
     activeTab: TabEnum.MAIN,
+    isActiveTab: false,
     pages: new Map<TabEnum, JSX.Element[]>(),
     isStandalone: window.matchMedia('(display-mode: standalone)').matches,
 };
@@ -21,16 +22,15 @@ const AppSlice = createSlice({
             channel.postMessage(payload);
         },
 
-        setStateApp(state, { payload }: PayloadAction<Partial<StateType>>) {
-            for (const [key, value] of Object.entries(payload) as [keyof StateType, StateType[keyof StateType]][]) {
+        setStateApp(state, { payload }: PayloadAction<Partial<AppStateType>>) {
+            for (const [key, value] of Object.entries(payload) as [
+                keyof AppStateType,
+                AppStateType[keyof AppStateType],
+            ][]) {
                 state[key] = value as never;
             }
-        },
-
-        changeSettings(state, { payload }: PayloadAction<Partial<SettingsType>>) {
-            Envs.settings = { ...Envs.settings, ...state.settings, ...payload };
-            localStorage.setItem('settings', JSON.stringify(Envs.settings));
-            state.settings = Envs.settings as SettingsType;
+            const cleanState = current(state);
+            if (state.activeTab && state.isLoadedFromIndexDb) upsertAppIndexDb(cleanState);
         },
     },
 });

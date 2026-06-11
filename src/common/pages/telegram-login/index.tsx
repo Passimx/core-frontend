@@ -29,7 +29,7 @@ export const TelegramLogin: FC = () => {
 
         const data = response.data;
         postMessageToBroadCastChannel({
-            event: EventsEnum.UPDATE_USER,
+            event: EventsEnum.SET_STATE_USER,
             data: { token: data.token },
         });
     };
