@@ -44,7 +44,6 @@ export const CreateAccountPage: FC = () => {
         }
 
         const encryptedToken = await CryptoService.encryptByAESKey(aesKey, response.data.token);
-
         const id = CryptoService.getHash(rsaPublicKey);
 
         postMessageToBroadCastChannel({ event: EventsEnum.SET_STATE_APP, data: { activeAccount: id } });

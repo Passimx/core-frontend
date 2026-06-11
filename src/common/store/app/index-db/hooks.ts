@@ -1,7 +1,7 @@
 import { AppStateType } from '../types/state.type.ts';
 
 export const upsertAppIndexDb = (payload: Partial<AppStateType>) => {
-    const openRequest = indexedDB?.open('store', 2);
+    const openRequest = indexedDB?.open('store', 1);
     const copyPayload: Partial<AppStateType> = { activeAccount: payload.activeAccount, settings: payload.settings };
 
     openRequest.onupgradeneeded = () => {

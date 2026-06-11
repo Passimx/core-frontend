@@ -1,7 +1,5 @@
 import type { FC } from 'react';
 import { useTranslation } from '../../hooks/translations/use-translation.ts';
-import { useIsIos } from '../../hooks/use-is-ios.hook.ts';
-import { useIsPhone } from '../../hooks/use-is-phone.hook.ts';
 import styles from './index.module.css';
 import { Auth } from '../auth';
 import { ChildrenPropsType } from '../../types/props/children-props.type.ts';
@@ -13,18 +11,18 @@ import { useLoadFromIndexDbHook } from '../../hooks/use-load-from-index-db.hook.
 import { useMainTab } from '../../hooks/use-main-tab.hook.ts';
 import { RotateLoading } from '../rotate-loading';
 import { useAppSelector } from '../../store';
+import { useDevice } from '../../hooks/use-device.hooks.ts';
 
 export const App: FC<ChildrenPropsType> = () => {
-    const lang = useAppSelector((state) => state.app?.settings?.lang);
+    const isLoadedFromIndexDb = useAppSelector((state) => state.app?.isLoadedFromIndexDb);
 
-    useIsIos();
-    useIsPhone();
+    useDevice();
     useMainTab();
     useLoadFromIndexDbHook();
     useBroadcastChannel();
     useTranslation();
 
-    if (!lang)
+    if (!isLoadedFromIndexDb)
         return (
             <div className={styles.background}>
                 <RotateLoading />

@@ -6,7 +6,7 @@ import { initReactI18next } from 'react-i18next';
 import CH from './languages/zh/translation.json';
 import EN from './languages/en/translation.json';
 import RU from './languages/ru/translation.json';
-import { useAppAction, useAppSelector } from '../../store';
+import { useAppSelector } from '../../store';
 
 export const resources = {
     en: {
@@ -21,21 +21,10 @@ export const resources = {
 };
 
 export const useTranslation = () => {
-    const { settings, isActiveTab } = useAppSelector((state) => state.app);
-    const { setStateApp } = useAppAction();
+    const { settings } = useAppSelector((state) => state.app);
 
     useEffect(() => {
-        if (!isActiveTab) return;
-        if (settings?.lang) return;
-
-        const browserLang = navigator.language.slice(0, 2).toLowerCase();
-        const languages: string[] = Object.keys(resources);
-        const lang = languages.find((lang) => lang === browserLang) ?? 'en';
-
-        setStateApp({ settings: { ...settings!, lang } });
-    }, [isActiveTab, settings?.lang]);
-
-    useEffect(() => {
+        if (!settings?.lang) return;
         if (i18n.language?.split('-')[0] === settings?.lang?.split('-')[0].split('-')[0]) return;
         const elements = document.querySelectorAll<HTMLDivElement>('.text_translate');
         elements.forEach((el) => {
@@ -72,5 +61,5 @@ export const useTranslation = () => {
                     }, time);
                 });
             });
-    }, [settings?.lang, isActiveTab]);
+    }, [settings?.lang]);
 };

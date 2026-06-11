@@ -16,6 +16,7 @@ export type AppStateType = {
     isPhone: boolean;
     isStandalone: boolean;
     isIos: boolean;
+
     isLoadedFromIndexDb: boolean;
 
     activeTab: TabEnum;
@@ -23,6 +24,6 @@ export type AppStateType = {
     isActiveTab?: boolean;
     foreground?: JSX.Element;
 
-    settings: SettingsType;
+    settings: Partial<SettingsType>;
     activeAccount: string;
 };

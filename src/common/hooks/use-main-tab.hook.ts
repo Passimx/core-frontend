@@ -1,17 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { rawApp } from '../store/app/app.raw';
 import { TabsEnum } from '../types/events/tabs.enum.ts';
-import { useAppAction, useAppSelector } from '../store';
+import { store, useAppAction } from '../store';
 import { EventsEnum } from '../types/events/events.enum.ts';
 
 export const useMainTab = () => {
     const { setStateApp, postMessageToBroadCastChannel } = useAppAction();
-    const app = useAppSelector((state) => state.app);
-
-    const appRef = useRef(app);
-    useEffect(() => {
-        appRef.current = app;
-    }, [app]);
 
     useEffect(() => {
         const channel = new BroadcastChannel('ws-channel');
@@ -35,12 +29,23 @@ export const useMainTab = () => {
                     rawApp.tabs = Array.from(new Set([...rawApp.tabs, data.data])).sort((a, b) => a - b);
 
                     if (rawApp.tabs[0] === instanceId) {
-                        channel.postMessage({ event: TabsEnum.SYNC_TAB, data: rawApp.tabs });
+                        const { app, user } = store.getState();
+
+                        postMessageToBroadCastChannel({
+                            event: EventsEnum.SET_STATE_USER,
+                            data: user,
+                        });
 
                         postMessageToBroadCastChannel({
                             event: EventsEnum.SET_STATE_APP,
-                            data: { settings: appRef.current.settings, activeAccount: appRef.current.activeAccount },
+                            data: {
+                                settings: app.settings,
+                                activeAccount: app.activeAccount,
+                                isLoadedFromIndexDb: app.isLoadedFromIndexDb,
+                            },
                         });
+
+                        channel.postMessage({ event: TabsEnum.SYNC_TAB, data: rawApp.tabs });
                     }
                     break;
 
