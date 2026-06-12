@@ -18,10 +18,11 @@ export type AppStateType = {
     isIos: boolean;
 
     isLoadedFromIndexDb: boolean;
+    isActiveTab: boolean;
+    isListenNotifications: boolean;
 
     activeTab: TabEnum;
     pages: Map<TabEnum, JSX.Element[]>;
-    isActiveTab?: boolean;
     foreground?: JSX.Element;
 
     settings: Partial<SettingsType>;

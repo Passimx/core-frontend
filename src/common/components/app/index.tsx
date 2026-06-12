@@ -12,15 +12,17 @@ import { useMainTab } from '../../hooks/use-main-tab.hook.ts';
 import { RotateLoading } from '../rotate-loading';
 import { useAppSelector } from '../../store';
 import { useDevice } from '../../hooks/use-device.hooks.ts';
+import { useNotifications } from '../../hooks/use-notigications/use-notifications.hook.ts';
 
 export const App: FC<ChildrenPropsType> = () => {
     const isLoadedFromIndexDb = useAppSelector((state) => state.app?.isLoadedFromIndexDb);
 
     useDevice();
     useMainTab();
-    useLoadFromIndexDbHook();
-    useBroadcastChannel();
     useTranslation();
+    useNotifications();
+    useBroadcastChannel();
+    useLoadFromIndexDbHook();
 
     if (!isLoadedFromIndexDb)
         return (

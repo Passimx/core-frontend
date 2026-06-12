@@ -1,5 +1,6 @@
 import { EventsEnum } from './events.enum.ts';
 import { AppStateType } from '../../store/app/types/state.type.ts';
+import { UserStateType } from '../../store/user/types/state.type.ts';
 
 type ShowText = {
     readonly event: EventsEnum.SHOW_TEXT;
@@ -11,4 +12,9 @@ type SetStateApp = {
     readonly data: Partial<AppStateType>;
 };
 
-export type LocalEvents = ShowText | SetStateApp;
+type ConnectNotification = {
+    readonly event: EventsEnum.CONNECT_NOTIFICATIONS;
+    readonly data: Partial<UserStateType>;
+};
+
+export type LocalEvents = ShowText | SetStateApp | ConnectNotification;

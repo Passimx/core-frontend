@@ -11,6 +11,8 @@ import { Wallet } from '../wallet';
 import { formatNumber, getTotalBalance } from '../wallet/helper.ts';
 import { GrLanguage } from 'react-icons/gr';
 import { Languages } from '../../components/languages';
+import { PiDevicesBold } from 'react-icons/pi';
+import { Devices } from '../devices';
 
 export const Profile: FC = () => {
     const { t } = useTranslation();
@@ -23,17 +25,20 @@ export const Profile: FC = () => {
         postMessageToBroadCastChannel({ event: EventsEnum.LOGOUT });
     };
 
-    const onWallet = () => {
-        setPage(<Wallet />);
-    };
-
-    const onClickLang = () => {
-        setPage(<Languages />);
-    };
-
     return (
         <div className={styles.background}>
-            <div className={styles.div1} onClick={onWallet}>
+            <div className={styles.div1} onClick={() => setPage(<Devices />)}>
+                <Card>
+                    <div className={styles.div2}>
+                        <div className={styles.div3} style={{ backgroundColor: 'var(--color-5)' }}>
+                            <PiDevicesBold className={styles.div4} />
+                        </div>
+                        <div>{t('devices')}</div>
+                        <div className={styles.div5}></div>
+                    </div>
+                </Card>
+            </div>
+            <div className={styles.div1} onClick={() => setPage(<Wallet />)}>
                 <Card>
                     <div className={styles.div2}>
                         <div className={styles.div3} style={{ backgroundColor: 'var(--color-5)' }}>
@@ -48,7 +53,7 @@ export const Profile: FC = () => {
                     </div>
                 </Card>
             </div>
-            <div className={styles.div1} onClick={onClickLang}>
+            <div className={styles.div1} onClick={() => setPage(<Languages />)}>
                 <Card>
                     <div className={styles.div2}>
                         <div className={styles.div3} style={{ backgroundColor: '#ff8533' }}>

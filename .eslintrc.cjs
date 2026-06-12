@@ -11,8 +11,9 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     plugins: ['react-refresh'],
     rules: {
-        'quotes': ['error', 'single'],
-        'semi': ['error', 'always'],
+        'no-case-declarations': 'off',
+        quotes: ['error', 'single'],
+        semi: ['error', 'always'],
         'no-empty': 'error',
         'no-empty-pattern': 'error',
         'no-duplicate-imports': 'error',
@@ -22,5 +23,6 @@ module.exports = {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         'react-hooks/exhaustive-deps': 'off',
-        '@typescript-eslint/no-unused-vars': 'error'    },
+        '@typescript-eslint/no-unused-vars': 'error',
+    },
 };

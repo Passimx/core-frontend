@@ -11,4 +11,9 @@ type UpdateUser = {
     readonly data: Partial<UserStateType>;
 };
 
-export type ServerEventsType = Logout | UpdateUser;
+type Pong = {
+    readonly event: EventsEnum.PONG;
+    readonly data: unknown;
+};
+
+export type ServerEventsType = Logout | UpdateUser | Pong;

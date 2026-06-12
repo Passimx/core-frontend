@@ -17,6 +17,7 @@
   "price": "Price",
   "days": "days",
   "period": "days",
+  "devices": "Devices",
 
   "text1": "To log in, you need to verify your account by sending a message\n",
   "text2": "to our Telegram bot",
