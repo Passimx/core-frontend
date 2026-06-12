@@ -8,7 +8,7 @@ type Logout = {
 
 type UpdateUser = {
     readonly event: EventsEnum.SET_STATE_USER;
-    readonly data: Partial<UserStateType>;
+    readonly data: Partial<UserStateType> | null;
 };
 
 type Pong = {

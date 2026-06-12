@@ -5,12 +5,14 @@ import { IoExitOutline } from 'react-icons/io5';
 import { FaChrome, FaEdge, FaFirefoxBrowser, FaInternetExplorer, FaOpera, FaSafari, FaYandex } from 'react-icons/fa';
 import { IoMdBrowsers } from 'react-icons/io';
 import { ImMobile } from 'react-icons/im';
-import { useAppSelector } from '../../store';
 import { PageTitle } from '../../components/page-title';
 
 export const Devices: FC = memo(() => {
     const { t } = useTranslation();
-    const sessions = useAppSelector((state) => state.user.sessions);
+    // const sessions = useAppSelector((state) => state.user.sessions);
+    const sessions = [
+        { id: 'asd', userAgent: navigator.userAgent, isOnline: true, updatedAt: new Date(), createdAt: new Date() },
+    ];
 
     return (
         <div className={styles.background}>

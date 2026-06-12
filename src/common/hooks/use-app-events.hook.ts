@@ -1,9 +1,11 @@
 import { EventsEnum } from '../types/events/events.enum.ts';
 import { useAppAction } from '../store';
 import { EventsType } from '../types/events/event-data.type.ts';
+import { useDeleteAccount } from './use-delete-account.hook.ts';
 
 export const useAppEvents = () => {
-    const { logout, setStateUser, setStateApp } = useAppAction();
+    const deleteAccount = useDeleteAccount();
+    const { setStateUser, setStateApp } = useAppAction();
 
     return async (dataEvent: EventsType) => {
         const { event, data } = dataEvent;
@@ -16,7 +18,7 @@ export const useAppEvents = () => {
                 setStateApp(data);
                 break;
             case EventsEnum.LOGOUT:
-                logout();
+                deleteAccount();
                 break;
         }
     };

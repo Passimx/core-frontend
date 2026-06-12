@@ -8,7 +8,17 @@ const UserSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setStateUser(state, { payload }: PayloadAction<Partial<UserStateType>>) {
+        setStateUser(state, { payload }: PayloadAction<Partial<UserStateType | null>>) {
+            if (payload === null) {
+                for (const [key] of Object.entries(state) as [
+                    keyof UserStateType,
+                    UserStateType[keyof UserStateType],
+                ][]) {
+                    state[key] = undefined;
+                }
+                return;
+            }
+
             for (const [key, value] of Object.entries(payload) as [
                 keyof UserStateType,
                 UserStateType[keyof UserStateType],
@@ -16,19 +26,6 @@ const UserSlice = createSlice({
                 state[key] = value as never;
             }
             upsertAccountIndexDb(state);
-        },
-
-        logout(state) {
-            for (const [key] of Object.entries(state) as [keyof UserStateType, UserStateType[keyof UserStateType]][]) {
-                state[key] = undefined;
-            }
-            // state.key && deleteAccountIndexDb(state.key);
-            // deleteAllChatsIndexDb();
-            // Envs.RSAKeys = undefined;
-            // localStorage.removeItem('keys');
-            // return {};
-
-            localStorage.removeItem('user');
         },
     },
 });

@@ -1,5 +1,6 @@
 import { JSX } from 'react';
 import { CurrencyPrice } from '../../../types/api/currency-price.ts';
+import { UserStateType } from '../../user/types/state.type.ts';
 
 export type SettingsType = {
     lang: string;
@@ -27,4 +28,5 @@ export type AppStateType = {
 
     settings: Partial<SettingsType>;
     activeAccount: string;
+    accounts: Partial<UserStateType>[];
 };

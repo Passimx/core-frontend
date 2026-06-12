@@ -5,13 +5,14 @@ import { PageTitle } from '../../components/page-title';
 import { CreateAccountPage } from '../../components/create-account-page';
 import iconPassimX from '../../../../public/assets/icons/256.png';
 import { Image } from '../../components/image';
+import { LoginPassimxAccount } from '../login-passimx-account';
 
 export const LoginPage = () => {
     const { t } = useTranslation();
     const setPage = useSetPage();
 
     // const loginTelegram = () => setPage(<TelegramLogin />);
-    // const loginAccount = () => setPage(<LoginPage />);
+    const loginPassimXAccount = () => setPage(<LoginPassimxAccount />);
     const createAccount = () => setPage(<CreateAccountPage />);
 
     return (
@@ -23,10 +24,10 @@ export const LoginPage = () => {
                 {/*    <div>{t('login_by_telegram')}</div>*/}
                 {/*</div>*/}
                 {/*<div></div>*/}
-                {/*<div className={styles.background31} onClick={loginAccount}>*/}
-                {/*    <Image src={iconPassimX} className={styles.background32} />*/}
-                {/*    <div>{t('passimx_account')}</div>*/}
-                {/*</div>*/}
+                <div className={styles.background31} onClick={loginPassimXAccount}>
+                    <Image src={iconPassimX} className={styles.background32} />
+                    <div>{t('passimx_account')}</div>
+                </div>
                 <div className={styles.background31} onClick={createAccount}>
                     <Image src={iconPassimX} className={styles.background32} />
                     <div>{t('create_by_passimx')}</div>

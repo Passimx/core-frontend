@@ -41,6 +41,7 @@ export const useMainTab = () => {
                             data: {
                                 settings: app.settings,
                                 activeAccount: app.activeAccount,
+                                accounts: app.accounts,
                                 isLoadedFromIndexDb: app.isLoadedFromIndexDb,
                             },
                         });

@@ -1,6 +1,10 @@
 .background{
     display: grid;
 
+    .divn1{
+        background: none;
+    }
+
     .div1{
         cursor: pointer;
 

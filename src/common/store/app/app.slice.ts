@@ -10,7 +10,7 @@ const initialState: Partial<AppStateType> = {
     isOnline: navigator.onLine,
     activeTab: TabEnum.MAIN,
     isActiveTab: false,
-    pages: new Map<TabEnum, JSX.Element[]>(),
+    pages: new Map<TabEnum, JSX.Element[]>([]),
     isStandalone: window.matchMedia('(display-mode: standalone)').matches,
 };
 

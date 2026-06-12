@@ -16,6 +16,7 @@ export const CreateAccountPage: FC = () => {
     const { postMessageToBroadCastChannel } = useAppAction();
     const [loading, setLoading] = useState<boolean>(false);
     const lang = useAppSelector((state) => state.app.settings?.lang)!;
+    const accounts = useAppSelector((state) => state.app.accounts)!;
 
     const create = async () => {
         setLoading(true);
@@ -46,19 +47,26 @@ export const CreateAccountPage: FC = () => {
         const encryptedToken = await CryptoService.encryptByAESKey(aesKey, response.data.token);
         const id = CryptoService.getHash(rsaPublicKey);
 
-        postMessageToBroadCastChannel({ event: EventsEnum.SET_STATE_APP, data: { activeAccount: id } });
+        const account = {
+            id,
+            aesKey,
+            token: response.data.token,
+            rsaPublicKey: rsaKeysPair.publicKey,
+            rsaPrivateKey: rsaKeysPair.privateKey,
+
+            encryptedRsaPrivateKey,
+            encryptedToken,
+        };
+
+        const newAccounts = [...accounts, account];
+
+        postMessageToBroadCastChannel({
+            event: EventsEnum.SET_STATE_APP,
+            data: { activeAccount: id, accounts: newAccounts },
+        });
         postMessageToBroadCastChannel({
             event: EventsEnum.SET_STATE_USER,
-            data: {
-                id,
-                aesKey,
-                token: response.data.token,
-                rsaPublicKey: rsaKeysPair.publicKey,
-                rsaPrivateKey: rsaKeysPair.privateKey,
-
-                encryptedRsaPrivateKey,
-                encryptedToken,
-            },
+            data: account,
         });
     };
 
