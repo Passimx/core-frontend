@@ -28,7 +28,7 @@ function clearAllTimeouts() {
 function sendPing() {
     if (!ws || ws.readyState !== WebSocket.OPEN) return;
 
-    // ws.send(JSON.stringify({ event: 'ping', data: Date.now() }));
+    ws.send(JSON.stringify({ event: 'ping' }));
     clearTimeout(pongTimeoutTimer);
     pongTimeoutTimer = setTimeout(() => {
         logger.error('[WS Worker] Pong timeout expiration. Closing...');

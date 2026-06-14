@@ -2,13 +2,9 @@ import { FC } from 'react';
 import styles from './index.module.css';
 import { Card } from '../../components/card';
 import { useTranslation } from 'react-i18next';
-import { useAppAction, useAppSelector } from '../../store';
-import { EventsEnum } from '../../types/events/events.enum.ts';
-import { IoPersonAddOutline, IoWallet } from 'react-icons/io5';
-import { RiLogoutBoxFill } from 'react-icons/ri';
+import { useAppSelector } from '../../store';
+import { IoPersonAddOutline } from 'react-icons/io5';
 import { useSetPage } from '../../hooks/use-set-page.hook.ts';
-import { Wallet } from '../wallet';
-import { formatNumber, getTotalBalance } from '../wallet/helper.ts';
 import { GrLanguage } from 'react-icons/gr';
 import { Languages } from '../../components/languages';
 import { PiDevicesBold } from 'react-icons/pi';
@@ -20,19 +16,20 @@ import { Accounts } from '../accounts';
 export const Profile: FC = () => {
     const { t } = useTranslation();
     const setPage = useSetPage();
-    const { postMessageToBroadCastChannel } = useAppAction();
-    const sessionId = useAppSelector((state) => state.user.sessionId)!;
     const sessions = useAppSelector((state) => state.user.sessions);
     const accounts = useAppSelector((state) => state.app.accounts);
-    const currencyPrice = useAppSelector((state) => state.app.settings?.currencyPrice);
-    const balanceAccount = useAppSelector((state) => state.user.balanceAccount);
 
-    const onLogout = () => {
-        postMessageToBroadCastChannel({
-            event: EventsEnum.SEND_MESSAGE,
-            data: { event: EventsEnum.LOGOUT, data: sessionId },
-        });
-    };
+    // const currencyPrice = useAppSelector((state) => state.app.settings?.currencyPrice);
+    // const balanceAccount = useAppSelector((state) => state.user.balanceAccount);
+    // const { postMessageToBroadCastChannel } = useAppAction();
+    // const sessionId = useAppSelector((state) => state.user.sessionId)!;
+    //
+    // const onLogout = () => {
+    //     postMessageToBroadCastChannel({
+    //         event: EventsEnum.SEND_MESSAGE,
+    //         data: { event: EventsEnum.LOGOUT, data: sessionId },
+    //     });
+    // };
 
     return (
         <div className={styles.background}>
@@ -66,28 +63,26 @@ export const Profile: FC = () => {
                         <div className={styles.div3} style={{ backgroundColor: 'var(--color-5)' }}>
                             <PiDevicesBold className={styles.div4} />
                         </div>
-                        <div>{t('devices')}</div>
+                        <div>{t('t31')}</div>
                         <div className={styles.div5}>{sessions?.length}</div>
                     </div>
                 </Card>
             </div>
-            <div></div>
-            <div className={styles.div1} onClick={() => setPage(<Wallet />)}>
-                <Card>
-                    <div className={styles.div2}>
-                        <div className={styles.div3} style={{ backgroundColor: 'rgb(0, 204, 204)' }}>
-                            <IoWallet className={styles.div4} />
-                        </div>
-                        <div>{t('text7')}</div>
-                        <div className={styles.div5}>
-                            {balanceAccount &&
-                                currencyPrice &&
-                                formatNumber(getTotalBalance(balanceAccount, t('t11'), currencyPrice), t('t10'))}
-                        </div>
-                    </div>
-                </Card>
-            </div>
-            <div></div>
+            {/*<div className={styles.div1} onClick={() => setPage(<Wallet />)}>*/}
+            {/*    <Card>*/}
+            {/*        <div className={styles.div2}>*/}
+            {/*            <div className={styles.div3} style={{ backgroundColor: 'rgb(0, 204, 204)' }}>*/}
+            {/*                <IoWallet className={styles.div4} />*/}
+            {/*            </div>*/}
+            {/*            <div>{t('text7')}</div>*/}
+            {/*            <div className={styles.div5}>*/}
+            {/*                {balanceAccount &&*/}
+            {/*                    currencyPrice &&*/}
+            {/*                    formatNumber(getTotalBalance(balanceAccount, t('t11'), currencyPrice), t('t10'))}*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*    </Card>*/}
+            {/*</div>*/}
             <div className={styles.div1} onClick={() => setPage(<Languages />)}>
                 <Card>
                     <div className={styles.div2}>
@@ -96,16 +91,6 @@ export const Profile: FC = () => {
                         </div>
                         <div>{t('language')}</div>
                         <div className={styles.div5}>{t('language_native')}</div>
-                    </div>
-                </Card>
-            </div>
-            <div className={styles.div1} onClick={onLogout}>
-                <Card>
-                    <div className={styles.div2}>
-                        <div className={styles.div3} style={{ backgroundColor: '#ff8080' }}>
-                            <RiLogoutBoxFill className={styles.div4} />
-                        </div>
-                        <div>{t('text6')}</div>
                     </div>
                 </Card>
             </div>

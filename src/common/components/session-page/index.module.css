@@ -1,0 +1,34 @@
+.div1{
+    display: grid;
+    justify-items: center;
+    background-color: var(--color-3);
+    padding: 8px 24px 8px 24px;
+    border-radius: 16px;
+    gap: 16px;
+
+    .div2{
+        padding: 8px;
+        background-color: var(--color-5);
+        border-radius: 8px;
+
+        .div3{
+            font-size: 32px;
+        }
+    }
+
+    .div11{
+        display: grid;
+        justify-items: center;
+
+        .div12{}
+
+        .div13{
+            opacity: 0.7;
+        }
+    }
+
+    .div20{
+
+        background-color: #ff8080;
+    }
+}

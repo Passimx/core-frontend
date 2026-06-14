@@ -1,4 +1,5 @@
 import { SessionType } from '../../../types/sessions/session.type.ts';
+import { PeriodEnum } from '../../app/types/state.type.ts';
 
 export type UserKeyType = {
     id: string;
@@ -27,6 +28,7 @@ export type UserStateType = {
     encryptedRsaPrivateKey: string;
     encryptedToken: string;
     rsaPublicKey: CryptoKey;
+    autoTerminateSession: PeriodEnum;
 
     token: string;
     rsaPrivateKey: CryptoKey;

@@ -16,7 +16,7 @@ export const CreateAccountPage: FC = () => {
     const { t } = useTranslation();
     const { postMessageToBroadCastChannel } = useAppAction();
     const [loading, setLoading] = useState<boolean>(false);
-    const lang = useAppSelector((state) => state.app.settings?.lang)!;
+    const settings = useAppSelector((state) => state.app.settings)!;
     const accounts = useAppSelector((state) => state.app.accounts)!;
 
     const create = async () => {
@@ -37,7 +37,7 @@ export const CreateAccountPage: FC = () => {
             encryptedRsaPrivateKey,
             rsaPublicKey,
             encryptionUserAgent,
-            languageCode: lang,
+            languageCode: settings.lang!,
         });
 
         if (!response.success) {

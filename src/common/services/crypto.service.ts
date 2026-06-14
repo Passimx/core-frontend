@@ -103,7 +103,7 @@ export class CryptoService {
                 keyUsages,
             );
         } catch (error) {
-            console.log(error);
+            logger.error(error);
             return undefined;
         }
     }

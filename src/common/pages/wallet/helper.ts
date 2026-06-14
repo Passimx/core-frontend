@@ -2,7 +2,6 @@ import { CurrencyPrice } from '../../types/api/currency-price.ts';
 import { BalanceAccountType } from '../../store/user/types/state.type.ts';
 
 export function formatNumber(value: number, symdol?: string) {
-    console.log(value);
     const result = value.toLocaleString('ru-RU', {
         minimumFractionDigits: 0,
         maximumFractionDigits: 2,

@@ -25,7 +25,7 @@ export const updateUser = async (payload: Partial<UserStateType>) => {
         }
     }
 
-    const updated = accounts!.map((acc) => (acc.id === account ? account! : acc));
+    const updated = accounts!.map((ac) => (ac.id === account?.id ? account! : ac));
 
     if (payload.id === activeAccount)
         store.dispatch(AppActions.postMessageToBroadCastChannel({ event: EventsEnum.SET_STATE_USER, data: payload }));

@@ -2,6 +2,7 @@ import { store } from '../../store';
 import { AppActions } from '../../store/app/app.slice.ts';
 import { EventsEnum } from '../../types/events/events.enum.ts';
 import { UserStateType } from '../../store/user/types/state.type.ts';
+import { rawApp } from '../../store/app/app.raw.ts';
 
 export const deleteAccount = async (payload: Partial<UserStateType>) => {
     const { accounts, activeAccount } = store.getState().app;
@@ -14,7 +15,7 @@ export const deleteAccount = async (payload: Partial<UserStateType>) => {
     if (!accountActive || !accountDeleted) return;
     const newAccountList = [...accounts!]?.filter((account) => account.token !== accountDeleted.token);
 
-    indexedDB.deleteDatabase(accountDeleted.id!);
+    if (rawApp.isMainTab) indexedDB.deleteDatabase(accountDeleted.id!);
 
     store.dispatch(
         AppActions.postMessageToBroadCastChannel({

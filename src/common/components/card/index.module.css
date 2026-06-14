@@ -2,6 +2,11 @@
     background-color: var(--color-4);
     padding: 8px;
     border-radius: 15px;
+    cursor: pointer;
+
+    &:active{
+        opacity: 0.8;
+    }
 
     pre{
         word-break: break-word;

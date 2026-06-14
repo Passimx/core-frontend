@@ -2,15 +2,23 @@ import { JSX } from 'react';
 import { CurrencyPrice } from '../../../types/api/currency-price.ts';
 import { UserStateType } from '../../user/types/state.type.ts';
 
+export enum TabEnum {
+    MAIN = 'main',
+}
+
+// Если что-то будет меняться - не забудьте поменять хук useAutoTerminate
+export enum PeriodEnum {
+    WEEK = 'week',
+    MONTH = 'month',
+    THREE_MONTH = 'three_month',
+    SIX_MONTH = 'six_month',
+}
+
 export type SettingsType = {
     lang: string;
     currency: string;
     currencyPrice: CurrencyPrice;
 };
-
-export enum TabEnum {
-    MAIN = 'main',
-}
 
 export type AppStateType = {
     isOnline: boolean;

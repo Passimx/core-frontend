@@ -25,5 +25,10 @@ export const useNotifications = () => {
                 data: tokens,
             });
         }
+
+        return () => {
+            rawApp.worker?.terminate();
+            rawApp.worker = undefined;
+        };
     }, [isActiveTab, accounts?.length]);
 };

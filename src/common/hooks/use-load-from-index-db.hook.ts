@@ -93,9 +93,7 @@ export const useLoadFromIndexDbHook = () => {
                 if (!data?.settings?.lang) {
                     const browserLang = navigator.language.slice(0, 2).toLowerCase();
                     const languages: string[] = Object.keys(resources);
-                    const lang = languages.find((lang) => lang === browserLang) ?? 'en';
-
-                    data.settings.lang = lang;
+                    data.settings.lang = languages.find((lang) => lang === browserLang) ?? 'en';
                 }
 
                 const databases = await indexedDB.databases();

@@ -17,7 +17,9 @@
   "price": "Price",
   "days": "days",
   "period": "days",
-  "devices": "Devices",
+  "add_account": "Add account",
+  "accounts": "Accounts",
+  "online": "online",
 
   "text1": "To log in, you need to verify your account by sending a message\n",
   "text2": "to our Telegram bot",
@@ -56,6 +58,10 @@
   "enable_auto_renew": "Enable auto-renew",
   "disable_auto_renew": "Disable auto-renew",
   "ref_program": "Referral program",
+  "week": "1 week",
+  "month": "1 months",
+  "three_month": "3 months",
+  "six_month": "6 months",
 
   "t1": "Not enough credit.",
   "t2": "Service temporarily unavailable. Please try again later",
@@ -86,5 +92,11 @@
   "t27": "VPN",
   "t28": "Chats",
   "t29": "Calls",
-  "t30": "Data balance"
+  "t30": "Data balance",
+
+  "t31": "Account sessions",
+  "t32": "Session",
+  "t33": "Terminate session",
+  "t34": "Automatically terminate sessions",
+  "t35": "If the session is inactive"
 }

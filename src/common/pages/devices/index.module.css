@@ -2,7 +2,7 @@
     height: 100%;
     overflow: hidden;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto auto 1fr;
     color: white;
 
     .settings_background{
@@ -16,6 +16,7 @@
             border-bottom: 1px solid #0c518d;
             display: grid;
             gap: 6px;
+            cursor: pointer;
             grid-template-columns: auto 1fr auto;
 
             .item_logo{
@@ -29,6 +30,10 @@
 
             .item_opacity{
                 opacity: 0.7;
+            }
+
+            &:active{
+                opacity: 0.8;
             }
 
         }
@@ -46,30 +51,25 @@
             border-radius: 8px;
         }
     }
-    .button_background{
-        padding: 4px;
 
-        .button{
+    .div1{
+        display: grid;
+        gap: 4px !important;
+
+        .div2{
+            text-transform: uppercase;
+            padding-left: 8px;
+        }
+
+        .div3{
             cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            background-color: white;
-            display: grid;
-            grid-template-columns: auto;
-            justify-content: center;
-            align-items: center;
 
-            .button_text{
+            *{
                 display: grid;
-                justify-content: center;
-                align-items: center;
-                color: black;
-                grid-template-columns: auto auto;
-                gap: 8px;
+                grid-template-columns: 1fr auto;
 
-                .button_text_span{
-                    opacity: 0.4;
-                    font-weight: 600;
+                .div5{
+                    opacity: 0.7;
                 }
             }
         }

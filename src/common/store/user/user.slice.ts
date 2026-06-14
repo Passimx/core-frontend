@@ -9,15 +9,16 @@ const UserSlice = createSlice({
     initialState,
     reducers: {
         setStateUser(state, { payload }: PayloadAction<Partial<UserStateType | null>>) {
-            if (payload === null) {
-                for (const [key] of Object.entries(state) as [
+            if (payload === null || (payload.id && payload.id !== state.id)) {
+                for (const [key] of Object.entries(current(state)) as [
                     keyof UserStateType,
                     UserStateType[keyof UserStateType],
                 ][]) {
                     state[key] = undefined;
                 }
-                return;
             }
+
+            if (payload === null) return;
 
             for (const [key, value] of Object.entries(payload) as [
                 keyof UserStateType,
