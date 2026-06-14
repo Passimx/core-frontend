@@ -7,7 +7,6 @@ import { Card } from '../../components/card';
 import { useShortText } from '../../hooks/use-short-text.hook.ts';
 import { EventsEnum } from '../../types/events/events.enum.ts';
 import { MdOutlineCancel } from 'react-icons/md';
-import { useDeleteAccount } from '../../hooks/use-delete-account.hook.ts';
 
 export const Accounts: FC = () => {
     const { t } = useTranslation();
@@ -25,7 +24,14 @@ export const Accounts: FC = () => {
         postMessageToBroadCastChannel({ event: EventsEnum.SET_STATE_USER, data: account });
     };
 
-    const deleteAccount = useDeleteAccount();
+    const deleteAccount = (id: string) => {
+        const account = accounts!.find((account) => account.id === id)!;
+
+        postMessageToBroadCastChannel({
+            event: EventsEnum.SEND_MESSAGE,
+            data: { event: EventsEnum.LOGOUT, data: account.sessionId! },
+        });
+    };
 
     return (
         <div className={styles.div0}>

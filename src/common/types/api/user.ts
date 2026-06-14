@@ -2,6 +2,7 @@ import { BalanceAccountType, UserKeyType } from '../../store/user/types/state.ty
 
 export type LoginResponse = {
     token: string;
+    sessionId: string;
 };
 
 export type LoginRequest = {

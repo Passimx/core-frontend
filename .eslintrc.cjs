@@ -11,9 +11,9 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     plugins: ['react-refresh'],
     rules: {
-        'no-case-declarations': 'off',
         quotes: ['error', 'single'],
         semi: ['error', 'always'],
+        'no-case-declarations': 'off',
         'no-empty': 'error',
         'no-empty-pattern': 'error',
         'no-duplicate-imports': 'error',

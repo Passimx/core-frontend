@@ -6,13 +6,11 @@ import { FaChrome, FaEdge, FaFirefoxBrowser, FaInternetExplorer, FaOpera, FaSafa
 import { IoMdBrowsers } from 'react-icons/io';
 import { ImMobile } from 'react-icons/im';
 import { PageTitle } from '../../components/page-title';
+import { useAppSelector } from '../../store';
 
 export const Devices: FC = memo(() => {
     const { t } = useTranslation();
-    // const sessions = useAppSelector((state) => state.user.sessions);
-    const sessions = [
-        { id: 'asd', userAgent: navigator.userAgent, isOnline: true, updatedAt: new Date(), createdAt: new Date() },
-    ];
+    const sessions = useAppSelector((state) => state.user.sessions);
 
     return (
         <div className={styles.background}>

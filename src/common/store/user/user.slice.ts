@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 import { UserStateType } from './types/state.type.ts';
 import { upsertAccountIndexDb } from './index-db/hooks.ts';
 
@@ -25,7 +25,7 @@ const UserSlice = createSlice({
             ][]) {
                 state[key] = value as never;
             }
-            upsertAccountIndexDb(state);
+            upsertAccountIndexDb(current(state));
         },
     },
 });

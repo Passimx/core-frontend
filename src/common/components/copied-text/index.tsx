@@ -1,7 +1,7 @@
 import { FC, memo, useEffect, useState } from 'react';
 import styles from './index.module.css';
 import { useTranslation } from 'react-i18next';
-import setVisibilityCss from '../../hooks/set-visibility-css.ts';
+import setVisibilityCss from '../../hooks/functions/set-visibility-css.ts';
 import { EventsEnum } from '../../types/events/events.enum.ts';
 import { EventsType } from '../../types/events/event-data.type.ts';
 

@@ -10,6 +10,7 @@ import { useAppAction, useAppSelector } from '../../store';
 import { EventsEnum } from '../../types/events/events.enum.ts';
 import { mnemonicNew } from 'ton-crypto';
 import { CryptoService } from '../../services/crypto.service.ts';
+import { UserStateType } from '../../store/user/types/state.type.ts';
 
 export const CreateAccountPage: FC = () => {
     const { t } = useTranslation();
@@ -44,13 +45,14 @@ export const CreateAccountPage: FC = () => {
             return postMessageToBroadCastChannel({ event: EventsEnum.SHOW_TEXT, data: response.data });
         }
 
-        const encryptedToken = await CryptoService.encryptByAESKey(aesKey, response.data.token);
+        const encryptedToken = (await CryptoService.encryptByAESKey(aesKey, response.data.token))!;
         const id = CryptoService.getHash(rsaPublicKey);
 
-        const account = {
+        const account: Partial<UserStateType> = {
             id,
             aesKey,
             token: response.data.token,
+            sessionId: response.data.sessionId,
             rsaPublicKey: rsaKeysPair.publicKey,
             rsaPrivateKey: rsaKeysPair.privateKey,
 

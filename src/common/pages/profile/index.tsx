@@ -21,13 +21,17 @@ export const Profile: FC = () => {
     const { t } = useTranslation();
     const setPage = useSetPage();
     const { postMessageToBroadCastChannel } = useAppAction();
+    const sessionId = useAppSelector((state) => state.user.sessionId)!;
     const sessions = useAppSelector((state) => state.user.sessions);
     const accounts = useAppSelector((state) => state.app.accounts);
     const currencyPrice = useAppSelector((state) => state.app.settings?.currencyPrice);
     const balanceAccount = useAppSelector((state) => state.user.balanceAccount);
 
     const onLogout = () => {
-        postMessageToBroadCastChannel({ event: EventsEnum.LOGOUT });
+        postMessageToBroadCastChannel({
+            event: EventsEnum.SEND_MESSAGE,
+            data: { event: EventsEnum.LOGOUT, data: sessionId },
+        });
     };
 
     return (

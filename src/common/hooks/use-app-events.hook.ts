@@ -1,10 +1,11 @@
 import { EventsEnum } from '../types/events/events.enum.ts';
 import { useAppAction } from '../store';
 import { EventsType } from '../types/events/event-data.type.ts';
-import { useDeleteAccount } from './use-delete-account.hook.ts';
+import { updateUser } from './functions/update-user.ts';
+import { rawApp } from '../store/app/app.raw.ts';
+import { deleteAccount } from './functions/delete-account.ts';
 
 export const useAppEvents = () => {
-    const deleteAccount = useDeleteAccount();
     const { setStateUser, setStateApp } = useAppAction();
 
     return async (dataEvent: EventsType) => {
@@ -17,8 +18,14 @@ export const useAppEvents = () => {
             case EventsEnum.SET_STATE_APP:
                 setStateApp(data);
                 break;
+            case EventsEnum.UPDATE_USER:
+                await updateUser(data);
+                break;
             case EventsEnum.LOGOUT:
-                deleteAccount();
+                await deleteAccount(data);
+                break;
+            case EventsEnum.SEND_MESSAGE:
+                rawApp.worker?.postMessage(dataEvent);
                 break;
         }
     };

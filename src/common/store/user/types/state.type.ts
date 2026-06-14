@@ -33,5 +33,6 @@ export type UserStateType = {
 
     balanceAccount: BalanceAccountType;
     keys: UserKeyType[];
+    sessionId: string;
     sessions: SessionType[];
 };

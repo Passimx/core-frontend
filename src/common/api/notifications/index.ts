@@ -2,8 +2,9 @@ import { EventsType } from '../../types/events/event-data.type.ts';
 import { EventsEnum } from '../../types/events/events.enum.ts';
 import { Envs } from '../../config/envs/envs.ts';
 import { ServerEventsType } from '../../types/events/server-events.type.ts';
+import { logger } from '../../services/logger.service.ts';
 
-let token: string | undefined;
+let tokens: string[] | undefined;
 let ws: WebSocket | null = null;
 
 let pingIntervalTimer: NodeJS.Timeout | undefined;
@@ -27,26 +28,28 @@ function clearAllTimeouts() {
 function sendPing() {
     if (!ws || ws.readyState !== WebSocket.OPEN) return;
 
-    ws.send(JSON.stringify({ event: 'ping', data: Date.now() }));
+    // ws.send(JSON.stringify({ event: 'ping', data: Date.now() }));
     clearTimeout(pongTimeoutTimer);
     pongTimeoutTimer = setTimeout(() => {
-        console.warn('[WS Worker] Pong timeout expiration. Closing...');
+        logger.error('[WS Worker] Pong timeout expiration. Closing...');
         ws?.close();
     }, Envs.waitPong);
 }
 
 async function connect() {
-    if (!token?.length || ws) return;
+    if (!tokens?.length || ws) return;
 
-    ws = new WebSocket(`${Envs.notificationsUrl}?token=${token}`);
+    ws = new WebSocket(`${Envs.notificationsUrl}`);
 
     ws.onopen = () => {
-        postMessageToBroadCastChannel({ event: EventsEnum.SET_STATE_APP, data: { isListenNotifications: true } });
+        ws!.send(JSON.stringify({ event: EventsEnum.VERIFY, data: tokens }));
         reconnectDelay = 2000;
         clearTimeout(reconnectTimer);
     };
 
     ws.onmessage = (event: MessageEvent<string>) => {
+        postMessageToBroadCastChannel({ event: EventsEnum.SET_STATE_APP, data: { isListenNotifications: true } });
+
         try {
             const payload = JSON.parse(event.data) as ServerEventsType;
 
@@ -58,8 +61,9 @@ async function connect() {
             }
 
             postMessageToBroadCastChannel(payload);
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
-            console.error('[WS Worker] Critical payload parse error:', error);
+            logger.error('[WS Worker] Pong timeout expiration. Closing...');
         }
     };
 
@@ -70,7 +74,6 @@ async function connect() {
         postMessageToBroadCastChannel({ event: EventsEnum.SET_STATE_APP, data: { isListenNotifications: false } });
 
         if (navigator.onLine) {
-            console.log(`[WS Worker] Reconnecting in ${reconnectDelay}ms...`);
             reconnectTimer = setTimeout(connect, reconnectDelay);
             reconnectDelay = Math.min(reconnectDelay * 2, MAX_RECONNECT_DELAY);
         }
@@ -86,15 +89,18 @@ self.onmessage = async (dataEvent: MessageEvent<EventsType>) => {
 
     switch (event) {
         case EventsEnum.CONNECT_NOTIFICATIONS:
-            const newToken = dataEvent?.data?.data?.token;
+            const newToken = dataEvent?.data?.data;
 
-            if (token !== newToken && ws) {
-                token = newToken;
+            if (tokens !== newToken && ws) {
+                tokens = newToken;
                 ws.close();
             } else {
-                token = newToken;
+                tokens = newToken;
                 await connect();
             }
+            break;
+        case EventsEnum.SEND_MESSAGE:
+            ws?.send(JSON.stringify({ event: EventsEnum.SEND_MESSAGE, data: dataEvent?.data }));
             break;
     }
 };

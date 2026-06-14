@@ -7,12 +7,12 @@ import { TabEnum } from '../../store/app/types/state.type.ts';
 
 export const Auth: FC<ChildrenPropsType> = ({ children }) => {
     const { setStateApp } = useAppAction();
-    const user = useAppSelector((state) => state.user);
+    const userId = useAppSelector((state) => state.user?.id);
 
     useEffect(() => {
-        if (!user.id) setStateApp({ pages: new Map([[TabEnum.MAIN, [<LoginPage />]]]) });
+        if (!userId) setStateApp({ pages: new Map([[TabEnum.MAIN, [<LoginPage />]]]) });
         else setStateApp({ pages: new Map([[TabEnum.MAIN, [<MainPage />]]]) });
-    }, [user.id]);
+    }, [userId]);
 
     return children;
 };

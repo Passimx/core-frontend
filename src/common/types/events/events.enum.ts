@@ -7,6 +7,9 @@ export enum EventsEnum {
     SET_STATE_USER = 'set_state_user',
 
     LOGOUT = 'logout',
+    UPDATE_USER = 'update_user',
 
     PONG = 'pong',
+    VERIFY = 'verify',
+    SEND_MESSAGE = 'send_message',
 }
