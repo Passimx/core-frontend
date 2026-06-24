@@ -1,10 +1,5 @@
 import { BalanceAccountType, UserKeyType } from '../../store/user/types/state.type.ts';
 
-export type LoginResponse = {
-    token: string;
-    sessionId: string;
-};
-
 export type LoginRequest = {
     key: string;
 };
@@ -24,4 +19,5 @@ export type CreatePassimXAccountRequest = {
     encryptedRsaPrivateKey: string;
     languageCode: string;
     encryptionUserAgent: string;
+    seedPhraseHash: string;
 };

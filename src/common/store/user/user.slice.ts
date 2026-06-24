@@ -26,6 +26,7 @@ const UserSlice = createSlice({
             ][]) {
                 state[key] = value as never;
             }
+
             upsertAccountIndexDb(current(state));
         },
     },

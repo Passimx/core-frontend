@@ -16,4 +16,9 @@ type ConnectNotification = {
     readonly data: string[];
 };
 
-export type LocalEvents = ShowText | SetStateApp | ConnectNotification;
+type SetConnectionPublicKeyString = {
+    readonly event: EventsEnum.SET_CONNECTION_RSA_PUBLIC_KEY_STRING;
+    readonly data: string;
+};
+
+export type LocalEvents = ShowText | SetStateApp | ConnectNotification | SetConnectionPublicKeyString;

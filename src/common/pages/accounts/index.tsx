@@ -29,7 +29,7 @@ export const Accounts: FC = () => {
 
         postMessageToBroadCastChannel({
             event: EventsEnum.SEND_MESSAGE,
-            data: { event: EventsEnum.LOGOUT, data: { id: account.sessionId } },
+            data: { event: EventsEnum.LOGOUT, data: [{ id: account.sessionId }] },
         });
     };
 

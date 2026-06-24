@@ -28,7 +28,9 @@ export type AppStateType = {
 
     isLoadedFromIndexDb: boolean;
     isActiveTab: boolean;
-    isListenNotifications: boolean;
+
+    connectionId: string;
+    connectionRsaPrivateKey: CryptoKey;
 
     activeTab: TabEnum;
     pages: Map<TabEnum, JSX.Element[]>;

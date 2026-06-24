@@ -1,0 +1,32 @@
+.div1{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 8px;
+
+    .div4{
+        width: 40px;
+        height: 40px;
+        background-color: var(--color-5);
+        border-radius: 8px;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .div3{
+        display: grid;
+        gap: 16px;
+
+        .div33{
+
+            .div333{
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .div2{
+        font-size: 24px;
+    }
+
+}

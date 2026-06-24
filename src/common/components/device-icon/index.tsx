@@ -6,6 +6,8 @@ import { FaChrome, FaEdge, FaFirefoxBrowser, FaInternetExplorer, FaOpera, FaSafa
 import { IoMdBrowsers } from 'react-icons/io';
 
 export const DeviceIcon: FC<PropsType> = ({ userAgent, className }) => {
+    if (!userAgent?.length) return <IoMdBrowsers className={styles.item_logo} />;
+
     if (userAgent.indexOf('Android') > -1) return <ImMobile className={className} />;
     if (userAgent.indexOf('iPhone') > -1) return <ImMobile className={className} />;
     if (userAgent.indexOf('iPad') > -1) return <ImMobile className={className} />;

@@ -5,6 +5,8 @@ import { UserStateType } from '../../store/user/types/state.type.ts';
 import { rawApp } from '../../store/app/app.raw.ts';
 
 export const deleteAccount = async (payload: Partial<UserStateType>) => {
+    if (!rawApp.isMainTab) return;
+
     const { accounts, activeAccount } = store.getState().app;
 
     const accountDeleted = accounts?.find(
@@ -14,8 +16,6 @@ export const deleteAccount = async (payload: Partial<UserStateType>) => {
     const accountActive = accounts?.find((account) => account.id === activeAccount);
     if (!accountActive || !accountDeleted) return;
     const newAccountList = [...accounts!]?.filter((account) => account.token !== accountDeleted.token);
-
-    if (rawApp.isMainTab) indexedDB.deleteDatabase(accountDeleted.id!);
 
     store.dispatch(
         AppActions.postMessageToBroadCastChannel({

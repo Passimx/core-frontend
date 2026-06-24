@@ -8,5 +8,7 @@ export const useBroadcastChannel = () => {
     useEffect(() => {
         const channel = new BroadcastChannel('ws-channel');
         channel.onmessage = ({ data }: MessageEvent<any>) => sendMessage(data);
+
+        return () => channel?.close();
     }, []);
 };

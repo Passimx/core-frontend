@@ -98,5 +98,17 @@
   "t32": "Session",
   "t33": "Terminate session",
   "t34": "Automatically terminate sessions",
-  "t35": "If the session is inactive"
+  "t35": "If the session is inactive",
+  "t36": "This device",
+  "t37": "Active sessions",
+  "t38": "Terminate all other sessions",
+  "t39": "Login key",
+  "t40": "Download login file",
+  "t41": "Quick login via QR code",
+  "t42": "Log in to your PassimX account",
+  "t43": "Go to Settings -> Account Sessions -> Connect device",
+  "t44": "Point your camera at the QR code",
+  "t45": "Log in with a passkey",
+  "t46": "Connect device",
+  "t76": "Point your camera at the QR code"
 }

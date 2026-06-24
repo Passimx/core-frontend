@@ -1,4 +1,6 @@
-export const getDeviceName = (userAgent: string) => {
+export const getDeviceName = (userAgent?: string) => {
+    if (!userAgent?.length) return 'Browser';
+
     if (userAgent.indexOf('Android') > -1) return 'Android';
     if (userAgent.indexOf('iPhone') > -1) return 'iPhone';
     if (userAgent.indexOf('iPad') > -1) return 'iPad';

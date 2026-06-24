@@ -49,10 +49,24 @@ export const useLoadFromIndexDbHook = () => {
                                 data.aesKey!,
                                 data.encryptedRsaPrivateKey!,
                             );
-                            const rsaPrivateKey = await CryptoService.importRSAKey(rsaPrivateKeyString!, ['decrypt']);
-                            const token = await CryptoService.decryptByAESKey(data.aesKey!, data.encryptedToken!);
 
-                            resolve({ ...data, rsaPrivateKey, token });
+                            const [rsaPrivateKey, token, seedPhrase] = await Promise.all([
+                                CryptoService.importRSAKey(rsaPrivateKeyString!, ['decrypt']),
+                                CryptoService.decryptByAESKey(data.aesKey!, data.encryptedToken!),
+                                CryptoService.decryptByAESKey(data.aesKey!, data.encryptedSeedPhrase!),
+                            ]);
+
+                            const sessionsPromises = data.sessions?.map(async (session) => {
+                                session.userAgent = await CryptoService.decryptByAESKey(
+                                    data.aesKey!,
+                                    session.encryptionUserAgent!,
+                                );
+                                return session;
+                            });
+
+                            const sessions = sessionsPromises ? await Promise.all(sessionsPromises) : undefined;
+
+                            resolve({ ...data, rsaPrivateKey, token, seedPhrase, sessions });
                             // eslint-disable-next-line @typescript-eslint/no-unused-vars
                         } catch (cryptoError) {
                             resolve(null);
@@ -98,7 +112,14 @@ export const useLoadFromIndexDbHook = () => {
 
                 const databases = await indexedDB.databases();
 
-                const usersDataOrNull = await Promise.all(databases.map((database) => loadUser(database.name!)));
+                const usersDataOrNull = await Promise.all(
+                    databases.map(async (database) => {
+                        const user = await loadUser(database.name!);
+                        if (!user && database.name !== 'store') indexedDB.deleteDatabase(database.name!);
+                        return user;
+                    }),
+                );
+
                 const accounts = usersDataOrNull.filter((usersData) => !!usersData);
                 const account = accounts.find((account) => account.id === data.activeAccount);
 

@@ -23,6 +23,7 @@ export const CreateAccountPage: FC = () => {
         setLoading(true);
         const words = await mnemonicNew(24);
         const seedPhrase = words.join(' ');
+        const seedPhraseHash = CryptoService.getHash(seedPhrase);
 
         const aesKey = await CryptoService.generateAESKey(seedPhrase, false);
         const rsaKeysPair = await CryptoService.generateRSAKeys();
@@ -30,7 +31,7 @@ export const CreateAccountPage: FC = () => {
         const rsaPublicKey = await CryptoService.exportKey(rsaKeysPair.publicKey);
         const privateKeyString = await CryptoService.exportKey(rsaKeysPair.privateKey);
 
-        const encryptionUserAgent = (await CryptoService.encryptByRSAKey(rsaKeysPair.publicKey, navigator.userAgent))!;
+        const encryptionUserAgent = (await CryptoService.encryptByAESKey(aesKey, navigator.userAgent))!;
         const encryptedRsaPrivateKey = (await CryptoService.encryptByAESKey(aesKey, privateKeyString))!;
 
         const response = await createPassimXAccount({
@@ -38,6 +39,7 @@ export const CreateAccountPage: FC = () => {
             rsaPublicKey,
             encryptionUserAgent,
             languageCode: settings.lang!,
+            seedPhraseHash,
         });
 
         if (!response.success) {
@@ -46,25 +48,25 @@ export const CreateAccountPage: FC = () => {
         }
 
         const encryptedToken = (await CryptoService.encryptByAESKey(aesKey, response.data.token))!;
-        const id = CryptoService.getHash(rsaPublicKey);
+        const encryptedSeedPhrase = (await CryptoService.encryptByAESKey(aesKey, seedPhrase))!;
 
         const account: Partial<UserStateType> = {
-            id,
+            ...response.data,
             aesKey,
-            token: response.data.token,
-            sessionId: response.data.sessionId,
             rsaPublicKey: rsaKeysPair.publicKey,
             rsaPrivateKey: rsaKeysPair.privateKey,
+            seedPhrase,
 
             encryptedRsaPrivateKey,
             encryptedToken,
+            encryptedSeedPhrase,
         };
 
         const newAccounts = [...accounts, account];
 
         postMessageToBroadCastChannel({
             event: EventsEnum.SET_STATE_APP,
-            data: { activeAccount: id, accounts: newAccounts },
+            data: { activeAccount: response.data.id, accounts: newAccounts },
         });
         postMessageToBroadCastChannel({
             event: EventsEnum.SET_STATE_USER,

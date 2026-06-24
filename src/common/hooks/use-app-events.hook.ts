@@ -4,6 +4,7 @@ import { EventsType } from '../types/events/event-data.type.ts';
 import { updateUser } from './functions/update-user.ts';
 import { rawApp } from '../store/app/app.raw.ts';
 import { deleteAccount } from './functions/delete-account.ts';
+import { logIn } from './functions/log-in.ts';
 
 export const useAppEvents = () => {
     const { setStateUser, setStateApp } = useAppAction();
@@ -24,7 +25,11 @@ export const useAppEvents = () => {
             case EventsEnum.LOGOUT:
                 await deleteAccount(data);
                 break;
+            case EventsEnum.SEND_ENCRYPTED_SEED_PHRASE:
+                await logIn(data);
+                break;
             case EventsEnum.SEND_MESSAGE:
+            case EventsEnum.SEND_ASYNC_MESSAGE:
                 rawApp.worker?.postMessage(dataEvent);
                 break;
         }

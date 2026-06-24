@@ -1,4 +1,4 @@
 export type PropsType = {
-    userAgent: string;
+    userAgent?: string;
     className?: string;
 };

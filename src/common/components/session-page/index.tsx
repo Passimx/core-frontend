@@ -17,7 +17,7 @@ export const SessionPage: FC<PropsType> = ({ session }) => {
     const logout = () => {
         postMessageToBroadCastChannel({
             event: EventsEnum.SEND_MESSAGE,
-            data: { event: EventsEnum.LOGOUT, data: { id: session.id } },
+            data: { event: EventsEnum.LOGOUT, data: [{ id: session.id }] },
         });
         setStateApp({ foreground: undefined });
     };

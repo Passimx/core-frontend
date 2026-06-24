@@ -1,1 +1,55 @@
-.background{}
+.background{
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+
+    .div111{
+        display: grid;
+        justify-items: center;
+        gap: 24px !important;
+
+        .div1{
+            width: 60%;
+
+            background-color: white;
+            padding: 16px;
+            aspect-ratio: 1/1;
+            border-radius: 10%;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .div11{
+            font-weight: 900;
+            font-size: 24px;
+        }
+
+        .div2{
+            display: grid;
+            gap: 16px !important;
+
+            .div3{
+                display: grid;
+                grid-template-columns: auto 1fr;
+                align-items: center;
+
+                .div4{
+                    display: grid;
+                    background-color: var(--color-5);
+                    width: 30px;
+                    aspect-ratio: 1/1;
+                    justify-items: center;
+                    align-items: center;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+
+    .div112{
+        display: grid;
+        justify-items: center;
+        align-items: center;
+    }
+}

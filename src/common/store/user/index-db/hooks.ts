@@ -11,6 +11,14 @@ export const upsertAccountIndexDb = (payload: Partial<UserStateType>) => {
 
     delete plainPayload.rsaPrivateKey;
     delete plainPayload.token;
+    delete plainPayload.seedPhrase;
+
+    payload.sessions = payload.sessions?.map((session) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { userAgent, ...data } = session;
+
+        return data;
+    });
 
     const openRequest = indexedDB?.open(payload.id, 1);
 

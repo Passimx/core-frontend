@@ -1,7 +1,6 @@
 import { UserStateType } from '../../store/user/types/state.type.ts';
 import { SessionType } from '../../types/sessions/session.type.ts';
 import { store } from '../../store';
-import { SessionFromServerType } from '../../types/sessions/session-from-server.type.ts';
 import { CryptoService } from '../../services/crypto.service.ts';
 import { AppActions } from '../../store/app/app.slice.ts';
 import { EventsEnum } from '../../types/events/events.enum.ts';
@@ -11,13 +10,12 @@ export const updateUser = async (payload: Partial<UserStateType>) => {
     let account = accounts?.find((user) => user.id === payload.id);
 
     if (payload?.sessions?.length) {
-        const sessions: SessionType[] = [];
-
         if (account) {
-            for (const session of payload.sessions as unknown as SessionFromServerType[]) {
-                const { encryptionUserAgent, ...data } = session;
-                const userAgent = (await CryptoService.decryptByRSAKey(account.rsaPrivateKey!, encryptionUserAgent))!;
-                sessions.push({ ...data, userAgent });
+            const sessions: SessionType[] = [];
+
+            for (const session of payload.sessions as unknown as SessionType[]) {
+                const userAgent = (await CryptoService.decryptByAESKey(account.aesKey!, session.encryptionUserAgent))!;
+                sessions.push({ ...session, userAgent });
             }
 
             payload.sessions = sessions;

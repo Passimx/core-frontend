@@ -25,16 +25,20 @@ export type UserStateType = {
     id: string;
     updatedAt: number;
     aesKey: CryptoKey;
-    encryptedRsaPrivateKey: string;
-    encryptedToken: string;
     rsaPublicKey: CryptoKey;
     autoTerminateSession: PeriodEnum;
 
-    token: string;
+    encryptedRsaPrivateKey: string;
+    encryptedToken: string;
+    encryptedSeedPhrase: string;
+
     rsaPrivateKey: CryptoKey;
+    token: string;
+    seedPhraseHash: string;
+    seedPhrase: string;
 
     balanceAccount: BalanceAccountType;
     keys: UserKeyType[];
     sessionId: string;
-    sessions: SessionType[];
+    sessions: Partial<SessionType>[];
 };
