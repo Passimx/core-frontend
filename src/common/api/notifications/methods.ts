@@ -2,6 +2,7 @@ import { EventsEnum } from '../../types/events/events.enum.ts';
 import { notificationPromise } from './promise.ts';
 import { UserStateType } from '../../store/user/types/state.type.ts';
 import { SessionType } from '../../types/sessions/session.type.ts';
+import { CreatePassimXAccountRequest } from '../../types/api/user.ts';
 
 export const getConnectionKeyWs = (data: string) => {
     return notificationPromise<string>({
@@ -13,6 +14,13 @@ export const getConnectionKeyWs = (data: string) => {
 export const loginWs = (data: Partial<UserStateType & SessionType>) => {
     return notificationPromise<Partial<UserStateType>>({
         event: EventsEnum.LOGIN,
+        data,
+    });
+};
+
+export const createUser = (data: CreatePassimXAccountRequest) => {
+    return notificationPromise<Partial<UserStateType>>({
+        event: EventsEnum.CREATE_USER,
         data,
     });
 };

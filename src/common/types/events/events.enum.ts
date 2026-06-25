@@ -9,6 +9,7 @@ export enum EventsEnum {
 
     LOGOUT = 'logout',
     LOGIN = 'login',
+    CREATE_USER = 'create_user',
     UPDATE_USER = 'update_user',
     RESEND_ASYNC_MESSAGE = 'resend_async_message',
     SEND_MESSAGE_TO_CONNECTION = 'send_message_to_connection',

@@ -10,14 +10,9 @@ export type UserResponse = {
     keys: UserKeyType[];
 };
 
-export type CreateAccountRequest = {
-    languageCode: string;
-};
-
 export type CreatePassimXAccountRequest = {
     rsaPublicKey: string;
     encryptedRsaPrivateKey: string;
-    languageCode: string;
     encryptionUserAgent: string;
     seedPhraseHash: string;
 };

@@ -5,18 +5,17 @@ import { useTranslation } from 'react-i18next';
 import { Card } from '../card';
 import { Button } from '../button';
 import { RotateLoading } from '../rotate-loading';
-import { createPassimXAccount } from '../../api/auth';
 import { useAppAction, useAppSelector } from '../../store';
 import { EventsEnum } from '../../types/events/events.enum.ts';
 import { mnemonicNew } from 'ton-crypto';
 import { CryptoService } from '../../services/crypto.service.ts';
 import { UserStateType } from '../../store/user/types/state.type.ts';
+import { createUser } from '../../api/notifications/methods.ts';
 
 export const CreateAccountPage: FC = () => {
     const { t } = useTranslation();
     const { postMessageToBroadCastChannel } = useAppAction();
     const [loading, setLoading] = useState<boolean>(false);
-    const settings = useAppSelector((state) => state.app.settings)!;
     const accounts = useAppSelector((state) => state.app.accounts)!;
 
     const create = async () => {
@@ -34,24 +33,23 @@ export const CreateAccountPage: FC = () => {
         const encryptionUserAgent = (await CryptoService.encryptByAESKey(aesKey, navigator.userAgent))!;
         const encryptedRsaPrivateKey = (await CryptoService.encryptByAESKey(aesKey, privateKeyString))!;
 
-        const response = await createPassimXAccount({
+        const response = await createUser({
             encryptedRsaPrivateKey,
             rsaPublicKey,
             encryptionUserAgent,
-            languageCode: settings.lang!,
             seedPhraseHash,
         });
 
-        if (!response.success) {
+        if (!response) {
             setLoading(false);
-            return postMessageToBroadCastChannel({ event: EventsEnum.SHOW_TEXT, data: response.data });
+            return postMessageToBroadCastChannel({ event: EventsEnum.SHOW_TEXT, data: EventsEnum.ERROR });
         }
 
-        const encryptedToken = (await CryptoService.encryptByAESKey(aesKey, response.data.token))!;
+        const encryptedToken = (await CryptoService.encryptByAESKey(aesKey, response.token))!;
         const encryptedSeedPhrase = (await CryptoService.encryptByAESKey(aesKey, seedPhrase))!;
 
         const account: Partial<UserStateType> = {
-            ...response.data,
+            ...response,
             aesKey,
             rsaPublicKey: rsaKeysPair.publicKey,
             rsaPrivateKey: rsaKeysPair.privateKey,
@@ -66,7 +64,7 @@ export const CreateAccountPage: FC = () => {
 
         postMessageToBroadCastChannel({
             event: EventsEnum.SET_STATE_APP,
-            data: { activeAccount: response.data.id, accounts: newAccounts },
+            data: { activeAccount: response.id, accounts: newAccounts },
         });
         postMessageToBroadCastChannel({
             event: EventsEnum.SET_STATE_USER,

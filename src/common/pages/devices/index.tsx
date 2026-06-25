@@ -42,8 +42,8 @@ export const Devices: FC = memo(() => {
     };
 
     const downloadKey = () => {
-        if (!seedPhrase) return;
-        const blob = new Blob([seedPhrase], { type: 'text/plain' });
+        if (!seedPhrase || !id) return;
+        const blob = new Blob([JSON.stringify({ id, seedPhrase })], { type: 'text/plain' });
         shareFile({ originalName: `${id}`, mimeType: MimetypeEnum.TXT }, blob);
     };
 
