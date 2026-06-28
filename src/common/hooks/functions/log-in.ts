@@ -15,12 +15,15 @@ export const logIn = async (payload: Partial<UserStateType>) => {
         );
 
     const userId = payload.id;
-    if (!payload.encryptedSeedPhrase || !userId) return error();
+    if (!(payload.encryptedSeedPhrase || payload.seedPhrase) || !userId) return error();
 
     const connectionRsaPrivateKey = store.getState().app.connectionRsaPrivateKey;
     if (!connectionRsaPrivateKey) return error();
 
-    const seedPhrase = await CryptoService.decryptByRSAKey(connectionRsaPrivateKey, payload.encryptedSeedPhrase);
+    let seedPhrase = payload.seedPhrase;
+    if (payload.encryptedSeedPhrase)
+        seedPhrase = await CryptoService.decryptByRSAKey(connectionRsaPrivateKey, payload.encryptedSeedPhrase);
+
     if (!seedPhrase) return error();
 
     const seedPhraseHash = CryptoService.getHash(seedPhrase);

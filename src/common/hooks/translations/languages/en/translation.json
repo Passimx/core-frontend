@@ -58,6 +58,7 @@
   "enable_auto_renew": "Enable auto-renew",
   "disable_auto_renew": "Disable auto-renew",
   "ref_program": "Referral program",
+  "never": "Никогда",
   "week": "1 week",
   "month": "1 months",
   "three_month": "3 months",
@@ -110,5 +111,7 @@
   "t44": "Point your camera at the QR code",
   "t45": "Log in with a passkey",
   "t46": "Connect device",
-  "t76": "Point your camera at the QR code"
+  "t76": "Point your camera at the QR code",
+  "t77": "Select file",
+  "t78": "Drag and drop file here or click to upload"
 }

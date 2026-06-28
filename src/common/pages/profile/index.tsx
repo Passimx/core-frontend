@@ -34,7 +34,7 @@ export const Profile: FC = () => {
     return (
         <div className={styles.background}>
             <div className={styles.div1} onClick={() => setPage(<LoginPage />)}>
-                <Card className={styles.divn1}>
+                <div className={styles.divn1}>
                     <div className={styles.div2} style={{ color: '#439fef' }}>
                         <div className={styles.div3}>
                             <IoPersonAddOutline className={styles.div4} />
@@ -42,7 +42,7 @@ export const Profile: FC = () => {
                         <div>{t('add_account')}</div>
                         <div className={styles.div5}></div>
                     </div>
-                </Card>
+                </div>
             </div>
             {accounts && accounts.length > 1 && (
                 <div className={styles.div1} onClick={() => setPage(<Accounts />)}>

@@ -3,5 +3,9 @@
 
     .div1{
         display: grid;
+
+        .div2{
+            border-radius: 50px;
+        }
     }
 }

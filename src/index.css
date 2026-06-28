@@ -4,7 +4,6 @@
     margin: 0;
     padding: 0;
     font-style: normal;
-    font-size: 15px;
     line-height: 18px;
     font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, Tahoma, Verdana, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -85,6 +84,7 @@ html{
     --color-4: #0a4375;
     --color-5: #0098ea;
     --padding: 8px;
+    --normal-text: clamp(1rem, 0.9rem + 0.5vw, 16px);
     /* for dev checking */
     /*--safe-area-inset-bottom: 32px;*/
     --safe-area-inset-bottom: env(safe-area-inset-bottom, 32px);

@@ -24,6 +24,8 @@ export const deleteAccount = async (payload: Partial<UserStateType>) => {
         }),
     );
 
+    if (accountDeleted?.id) indexedDB.deleteDatabase(accountDeleted?.id);
+
     if (newAccountList?.length === 0) {
         store.dispatch(
             AppActions.postMessageToBroadCastChannel({

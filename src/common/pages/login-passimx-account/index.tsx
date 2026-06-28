@@ -6,10 +6,13 @@ import { QrCodeImage } from '../../components/qr-code-image';
 import { Button } from '../../components/button';
 import { useAppSelector } from '../../store';
 import { ScanEventEnum } from '../../components/scan-qr-code/types/scan-event.enum.ts';
+import { useSetPage } from '../../hooks/use-set-page.hook.ts';
+import { LoginKey } from '../login-key';
 
 export const LoginPassimxAccount: FC = () => {
     const { t } = useTranslation();
     const instructions = ['t42', 't43', 't44'];
+    const setPage = useSetPage();
     const connectionId = useAppSelector((state) => state.app.connectionId);
     const url = connectionId
         ? `${window.location.origin}${ScanEventEnum.ADD_DEVICE}?connectionId=${connectionId}`
@@ -33,7 +36,7 @@ export const LoginPassimxAccount: FC = () => {
                 </div>
             </div>
             <div className={styles.div112}>
-                <Button text={t('t45')} onClick={() => {}} />
+                <Button text={t('t45')} onClick={() => setPage(<LoginKey />)} />
             </div>
         </div>
     );

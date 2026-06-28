@@ -82,9 +82,7 @@ export const CreateAccountPage: FC = () => {
                     <Card>
                         <div>{t('t26')}</div>
                     </Card>
-                    <Card>
-                        <Button text={t('create_by_passimx')} onClick={create} />
-                    </Card>
+                    <Button text={t('create_by_passimx')} className={styles.div2} onClick={create} />
                 </div>
             )}
         </div>

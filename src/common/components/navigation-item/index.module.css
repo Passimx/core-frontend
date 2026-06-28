@@ -4,15 +4,10 @@
 
     overflow: hidden;
     display: grid;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 1fr;
 
     .background1{
         overflow-y: auto;
         overflow-x: hidden;
-    }
-
-    .background2{
-        display: grid;
-        justify-items: center;
     }
 }
