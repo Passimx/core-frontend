@@ -3,10 +3,8 @@ import styles from './index.module.css';
 import { PageTitle } from '../../components/page-title';
 import { useTranslation } from 'react-i18next';
 import { Card } from '../../components/card';
-import { Link } from '../../components/link';
 import { EventsEnum } from '../../types/events/events.enum.ts';
 import { useAppAction } from '../../store';
-import { Envs } from '../../config/envs/envs.ts';
 import crypto from 'crypto';
 import { Button } from '../../components/button';
 import { login } from '../../api/auth';
@@ -47,7 +45,7 @@ export const TelegramLogin: FC = () => {
                     <br />
                     {t('text2')}
                     &nbsp;
-                    <Link href={Envs.telegram.botLink}>PassimX VPN</Link>
+                    {/*<Link href={Envs.telegram.botLink}>PassimX VPN</Link>*/}
                 </Card>
                 <Card>
                     {t('text3')}

@@ -12,6 +12,7 @@ import { Devices } from '../devices';
 import { LoginPage } from '../login';
 import { MdSupervisorAccount } from 'react-icons/md';
 import { Accounts } from '../accounts';
+import { Envs } from '../../config/envs/envs.ts';
 
 export const Profile: FC = () => {
     const { t } = useTranslation();
@@ -30,6 +31,10 @@ export const Profile: FC = () => {
     //         data: { event: EventsEnum.LOGOUT, data: sessionId },
     //     });
     // };
+
+    const onClickVersion = () => {
+        window.open(`https://github.com/Passimx/core-frontend/tree/${Envs.version}`, '_blank');
+    };
 
     return (
         <div className={styles.background}>
@@ -94,6 +99,9 @@ export const Profile: FC = () => {
                     </div>
                 </Card>
             </div>
+            <Card className={styles.div6} onClick={onClickVersion}>
+                <div className={styles.div7}>PassimX Web {Envs.version}</div>
+            </Card>
         </div>
     );
 };

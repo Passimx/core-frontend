@@ -24,7 +24,7 @@ jobs:
       ORGANIZATION_NAME: ${{ vars.ORGANIZATION_NAME }}
       IMAGE_NAME: ${{ vars.IMAGE_NAME }}
       VITE_API_URL: ${{ vars.VITE_API_URL }}
-      VITE_TG_BOT_LINK: ${{ vars.VITE_TG_BOT_LINK }}
+      VITE_NOTIFICATIONS_URL: ${{ vars.VITE_NOTIFICATIONS_URL }}
       VERSION: ${{ needs.version.outputs.release_version }}
     secrets:
       DOCKER_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}

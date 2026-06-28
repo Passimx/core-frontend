@@ -6,10 +6,6 @@ export enum EnvironmentEnum {
     PRODUCTION = 'production',
 }
 
-type TelegramType = {
-    botLink: string;
-};
-
 type EnvsType = {
     waitPong: number;
     intervalPing: number;
@@ -19,7 +15,6 @@ type EnvsType = {
     environment: EnvironmentEnum;
     settings?: Partial<SettingsType>;
     version: string;
-    telegram: TelegramType;
     appSalt: string;
 };
 
@@ -31,8 +26,5 @@ export const Envs: EnvsType = {
     notificationsUrl: import.meta.env.VITE_NOTIFICATIONS_URL,
     environment: import.meta.env.VITE_ENVIRONMENT,
     version: import.meta.env.VITE_APP_VERSION ?? json.version,
-    telegram: {
-        botLink: import.meta.env.VITE_TG_BOT_LINK,
-    },
     appSalt: 'sha256',
 };

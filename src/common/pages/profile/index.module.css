@@ -36,4 +36,13 @@
 
         }
     }
+
+    .div6{
+        text-align: center;
+        align-items: center;
+
+        .div7{
+            opacity: 0.8;
+        }
+    }
 }
