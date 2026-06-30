@@ -9,29 +9,36 @@
     .div1{
         cursor: pointer;
 
-        &:active {
-            opacity: 0.8;
-        }
-
-        .div2{
+        .div0{
             display: grid;
-            grid-template-columns: auto 1fr auto;
-            align-items: center;
+            gap: 16px !important;
 
-            .div3{
-                padding: 4px;
-                border-radius: 8px;
+            .div2{
                 display: grid;
+                grid-template-columns: auto 1fr auto;
                 align-items: center;
-                justify-items: center;
+                transition: all .3s ease;
 
-                .div4{
-                    font-size: 20px;
+                &:active {
+                    opacity: 0.8;
                 }
-            }
 
-            .div5{
-                opacity: 0.8;
+                .div3{
+                    padding: 4px;
+                    border-radius: 8px;
+                    display: grid;
+                    align-items: center;
+                    justify-items: center;
+
+                    .div4{
+                        font-size: 20px;
+                    }
+                }
+
+                .div5{
+                    opacity: 0.8;
+                }
+
             }
 
         }
@@ -44,5 +51,11 @@
         .div7{
             opacity: 0.8;
         }
+    }
+}
+
+.nonClick{
+    &:active{
+        opacity: 1;
     }
 }

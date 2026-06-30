@@ -7,7 +7,6 @@ import { upsertAppIndexDb } from './index-db/hooks.ts';
 const channel = new BroadcastChannel('ws-channel');
 
 const initialState: Partial<AppStateType> = {
-    isOnline: navigator.onLine,
     activeTab: TabEnum.MAIN,
     isActiveTab: false,
     pages: new Map<TabEnum, JSX.Element[]>([]),

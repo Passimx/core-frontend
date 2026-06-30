@@ -15,4 +15,6 @@ export type CreatePassimXAccountRequest = {
     encryptedRsaPrivateKey: string;
     encryptionUserAgent: string;
     seedPhraseHash: string;
+    pushSubscriptionPayload?: PushSubscriptionJSON;
+    lang?: string;
 };

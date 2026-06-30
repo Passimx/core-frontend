@@ -17,4 +17,9 @@ type CreateUser = {
     data: CreatePassimXAccountRequest;
 };
 
-export type SendAsyncMessageType = GetConnectionRsaPublicKeyString | Login | CreateUser;
+type GetApps = {
+    event: EventsEnum.GET_APPS;
+    data?: unknown;
+};
+
+export type SendAsyncMessageType = GetConnectionRsaPublicKeyString | Login | CreateUser | GetApps;

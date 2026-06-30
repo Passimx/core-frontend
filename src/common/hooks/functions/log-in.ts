@@ -29,9 +29,17 @@ export const logIn = async (payload: Partial<UserStateType>) => {
     const seedPhraseHash = CryptoService.getHash(seedPhrase);
     const aesKey = await CryptoService.generateAESKey(seedPhrase);
 
+    const app = store.getState().app;
+
     const encryptionUserAgent = (await CryptoService.encryptByAESKey(aesKey, navigator.userAgent))!;
 
-    const response = await loginWs({ seedPhraseHash, id: userId, encryptionUserAgent });
+    const response = await loginWs({
+        seedPhraseHash,
+        userId,
+        encryptionUserAgent,
+        pushSubscriptionPayload: app.pushSubscriptionPayload,
+        lang: app.settings?.lang,
+    });
     if (!response) return error();
 
     const rsaPublicKey = await CryptoService.importRSAKey(response.rsaPublicKey as unknown as string, ['encrypt']);

@@ -15,12 +15,12 @@
         height: calc(100dvh - var(--padding) * 2);
     }
 
-    .background_2{
+    #background_2{
         background-color: var(--color-2);
         height: calc(100dvh - var(--safe-area-inset-bottom));
         width: 100%;
         display: grid;
-        grid-template-rows: 52px 1fr;
+        grid-template-rows: auto 1fr;
         padding-bottom: var(--safe-area-inset-bottom);
 
         @media(width >= 600px){

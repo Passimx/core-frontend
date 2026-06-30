@@ -1,0 +1,8 @@
+.div0{
+    height: 100%;
+    width: 100%;
+    border: none;
+    display: grid;
+    align-items: center;
+    grid-template-rows:  1fr;
+}

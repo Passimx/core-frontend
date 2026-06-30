@@ -1,30 +1,36 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './index.module.css';
-import vpnIcon from '../../../../public/assets/images/vpn-icon.png';
-import chatsIcon from '../../../../public/assets/images/chat-icon.png';
-import callsIcon from '../../../../public/assets/images/calls-icon.png';
-import { AppType } from './types/app.type.ts';
 import { useSetPage } from '../../hooks/use-set-page.hook.ts';
-import { VpnApp } from '../../pages/vpn-app';
 import { Image } from '../image';
-import { Messenger } from '../../pages/messenger';
 import { useTranslation } from 'react-i18next';
+import { Iframe } from '../iframe';
+import { AppType } from './types/app.type.ts';
+import { getApps } from '../../api/notifications/methods.ts';
+import { useAppSelector } from '../../store';
 
 export const Apps: FC = () => {
     const { t } = useTranslation();
+    const [apps, setApps] = useState<AppType[]>([]);
     const setPage = useSetPage();
-    const apps: AppType[] = [
-        { id: 'asd', name: 't27', icon: vpnIcon, app: <VpnApp /> },
-        { id: 'asd2', name: 't28', icon: chatsIcon, app: <Messenger /> },
-        { id: 'asd3', name: 't29', icon: callsIcon, app: <Messenger /> },
-    ];
+    const connectionId = useAppSelector((state) => state.app.connectionId);
+
+    useEffect(() => {
+        if (!connectionId) return;
+        const get = async () => {
+            const response = await getApps();
+            if (!response) return;
+
+            setApps(response);
+        };
+        get();
+    }, [connectionId]);
 
     return (
         <div className={styles.background}>
-            {apps.map(({ id, name, icon, app }) => (
-                <div className={styles.div1} key={id} onClick={() => setPage(app)}>
+            {apps.map(({ id, name, iconUrl, homeUrl }) => (
+                <div className={styles.div1} key={id} onClick={() => setPage(<Iframe src={homeUrl} />)}>
                     <div className={styles.div11}>
-                        <Image src={icon} className={styles.div2} />
+                        <Image src={iconUrl} className={styles.div2} />
                     </div>
                     <div className={styles.div3}>{t(name)}</div>
                 </div>

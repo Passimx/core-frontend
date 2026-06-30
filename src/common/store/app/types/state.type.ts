@@ -21,6 +21,10 @@ export type SettingsType = {
     currencyPrice: CurrencyPrice;
 };
 
+export type IframeType = {
+    url: string;
+};
+
 export type AppStateType = {
     isOnline: boolean;
     isPhone: boolean;
@@ -36,8 +40,12 @@ export type AppStateType = {
     activeTab: TabEnum;
     pages: Map<TabEnum, JSX.Element[]>;
     foreground?: JSX.Element;
+    iframes: IframeType[];
 
     settings: Partial<SettingsType>;
     activeAccount: string;
     accounts: Partial<UserStateType>[];
+
+    allowNotifications: PermissionState | NotificationPermission;
+    pushSubscriptionPayload: PushSubscriptionJSON;
 };

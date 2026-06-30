@@ -34,7 +34,7 @@ export const App: FC<ChildrenPropsType> = () => {
     return (
         <div className={styles.background}>
             <TopElements />
-            <div className={styles.background_2}>
+            <div id={styles.background_2}>
                 <Header />
                 <Auth>
                     <Pages />

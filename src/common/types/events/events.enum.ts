@@ -11,6 +11,8 @@ export enum EventsEnum {
     LOGIN = 'login',
     CREATE_USER = 'create_user',
     UPDATE_USER = 'update_user',
+    GET_APPS = 'get_apps',
+
     RESEND_ASYNC_MESSAGE = 'resend_async_message',
     SEND_MESSAGE_TO_CONNECTION = 'send_message_to_connection',
     SEND_ENCRYPTED_SEED_PHRASE = 'send_encrypted_seed_phrase',

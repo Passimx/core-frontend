@@ -17,6 +17,7 @@ export const CreateAccountPage: FC = () => {
     const { postMessageToBroadCastChannel } = useAppAction();
     const [loading, setLoading] = useState<boolean>(false);
     const accounts = useAppSelector((state) => state.app.accounts)!;
+    const appState = useAppSelector((state) => state.app);
 
     const create = async () => {
         setLoading(true);
@@ -38,6 +39,8 @@ export const CreateAccountPage: FC = () => {
             rsaPublicKey,
             encryptionUserAgent,
             seedPhraseHash,
+            pushSubscriptionPayload: appState.pushSubscriptionPayload,
+            lang: appState.settings?.lang,
         });
 
         if (!response) {

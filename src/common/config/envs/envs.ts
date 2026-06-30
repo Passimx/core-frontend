@@ -1,5 +1,4 @@
 import json from '../../../../package.json';
-import type { SettingsType } from '../../store/app/types/state.type.ts';
 
 export enum EnvironmentEnum {
     STAGING = 'staging',
@@ -13,9 +12,9 @@ type EnvsType = {
     apiUrl: string;
     notificationsUrl: string;
     environment: EnvironmentEnum;
-    settings?: Partial<SettingsType>;
     version: string;
     appSalt: string;
+    publicVapidKey: string;
 };
 
 export const Envs: EnvsType = {
@@ -25,6 +24,7 @@ export const Envs: EnvsType = {
     apiUrl: import.meta.env.VITE_API_URL,
     notificationsUrl: import.meta.env.VITE_NOTIFICATIONS_URL,
     environment: import.meta.env.VITE_ENVIRONMENT,
+    publicVapidKey: import.meta.env.VITE_PUBLIC_VAPID_KEY,
     version: import.meta.env.VITE_APP_VERSION ?? json.version,
     appSalt: 'sha256',
 };
