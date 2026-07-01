@@ -26,7 +26,5 @@ export const setPushSubscriptionPayload = async () => {
         applicationServerKey: urlBase64ToUint8Array(Envs.publicVapidKey),
     });
 
-    alert(JSON.stringify(subscription.toJSON()));
-
     setStateApp({ pushSubscriptionPayload: subscription.toJSON() });
 };

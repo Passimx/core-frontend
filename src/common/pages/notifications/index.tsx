@@ -8,7 +8,7 @@ import { setPushSubscriptionPayload } from '../../hooks/functions/set-push-subsc
 
 export const Notifications: FC = () => {
     const { t } = useTranslation();
-    const { allowNotifications } = useAppSelector((state) => state.app);
+    const { allowNotifications, settings } = useAppSelector((state) => state.app);
 
     const handleNotificationClick = async () => {
         if (['default', 'prompt'].includes(allowNotifications!)) {
@@ -21,6 +21,7 @@ export const Notifications: FC = () => {
                 body: 'Текст уведомления...',
                 icon: 'https://png.pngtree.com/recommend-works/png-clipart/20250321/ourmid/pngtree-green-check-mark-icon-png-image_15808519.png',
                 badge: 'https://png.pngtree.com/recommend-works/png-clipart/20250321/ourmid/pngtree-green-check-mark-icon-png-image_15808519.png',
+                lang: settings?.lang,
             });
         }
     };
