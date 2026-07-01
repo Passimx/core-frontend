@@ -7,6 +7,7 @@ import { addPushSubscription } from '../../hooks/functions/add-push-subscription
 import { useAppAction, useAppSelector } from '../../store';
 import { Checkbox } from '../../components/checkbox';
 import { hidePushSubscription } from '../../hooks/functions/hide-push-subscription.ts';
+import { RiErrorWarningFill } from 'react-icons/ri';
 
 export const Notifications: FC = () => {
     const { t } = useTranslation();
@@ -44,10 +45,21 @@ export const Notifications: FC = () => {
                         </div>
                     </Card>
                 )}
+                {Notification.permission === 'denied' && (
+                    <Card className={styles.div6}>
+                        <div className={styles.div7}>
+                            <RiErrorWarningFill className={styles.div5} />
+                            <div>{t('t52')}</div>
+                        </div>
+                        <div>{t('t53')}</div>
+                    </Card>
+                )}
+                <br />
                 <Card className={styles.div4}>
                     <div>{t('t79')}</div>
                     <Checkbox checked={!!pushSubscriptionPayload} onChange={handleNotificationClick} />
                 </Card>
+                <br />
                 <Card className={styles.div4}>
                     <div>{t('t51')}</div>
                     <Checkbox checked={!!pushAllAccounts} onChange={onPushAllAccounts} />

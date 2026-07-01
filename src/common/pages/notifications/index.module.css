@@ -18,6 +18,30 @@
             display: grid;
             align-items: center;
             grid-template-columns: 1fr auto;
+
+            .div5{
+                color: red;
+                background-color: white;
+                font-size: 24px;
+                border-radius: 15px;
+            }
+        }
+
+        .div6{
+            display: grid;
+
+            .div7{
+                display: grid;
+                align-items: center;
+                grid-template-columns: auto 1fr;
+
+                .div5{
+                    color: red;
+                    background-color: white;
+                    font-size: 24px;
+                    border-radius: 15px;
+                }
+            }
         }
     }
 }

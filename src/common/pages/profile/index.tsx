@@ -39,7 +39,7 @@ export const Profile: FC = () => {
             </div>
             {accounts && accounts.length > 1 && (
                 <div className={styles.div1} onClick={() => setPage(<Accounts />)}>
-                    <Card>
+                    <Card className={styles.nonClick}>
                         <div className={styles.div0}>
                             <div className={styles.div2}>
                                 <div className={styles.div3} style={{ backgroundColor: 'var(--color-5)' }}>
@@ -53,7 +53,7 @@ export const Profile: FC = () => {
                 </div>
             )}
             <div className={styles.div1} onClick={() => setPage(<Devices />)}>
-                <Card>
+                <Card className={styles.nonClick}>
                     <div className={styles.div0}>
                         <div className={styles.div2}>
                             <div className={styles.div3} style={{ backgroundColor: 'var(--color-5)' }}>
@@ -65,21 +65,6 @@ export const Profile: FC = () => {
                     </div>
                 </Card>
             </div>
-            {/*<div className={styles.div1} onClick={() => setPage(<Wallet />)}>*/}
-            {/*    <Card>*/}
-            {/*        <div className={styles.div2}>*/}
-            {/*            <div className={styles.div3} style={{ backgroundColor: 'rgb(0, 204, 204)' }}>*/}
-            {/*                <IoWallet className={styles.div4} />*/}
-            {/*            </div>*/}
-            {/*            <div>{t('text7')}</div>*/}
-            {/*            <div className={styles.div5}>*/}
-            {/*                {balanceAccount &&*/}
-            {/*                    currencyPrice &&*/}
-            {/*                    formatNumber(getTotalBalance(balanceAccount, t('t11'), currencyPrice), t('t10'))}*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </Card>*/}
-            {/*</div>*/}
             <div className={styles.div1}>
                 <Card className={styles.nonClick}>
                     <div className={styles.div0}>

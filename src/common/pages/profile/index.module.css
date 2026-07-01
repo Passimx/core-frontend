@@ -11,16 +11,19 @@
 
         .div0{
             display: grid;
-            gap: 16px !important;
+            gap: 0 !important;
 
             .div2{
                 display: grid;
                 grid-template-columns: auto 1fr auto;
                 align-items: center;
                 transition: all .3s ease;
+                padding: 8px;
+                border-radius: 15px;
+                overflow: hidden;
 
-                &:active {
-                    opacity: 0.8;
+                &:active{
+                    backdrop-filter: brightness(70%);
                 }
 
                 .div3{
@@ -55,6 +58,10 @@
 }
 
 .nonClick{
+    padding: 0 !important;
+    overflow: hidden;
+    border-radius: 15px;
+
     &:active{
         opacity: 1;
     }

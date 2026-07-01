@@ -5,7 +5,7 @@ import { PropsType } from './types/types.ts';
 export const Checkbox: FC<PropsType> = ({ checked, onChange }) => {
     return (
         <label className={styles.toggle}>
-            <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} />
+            <input type="checkbox" checked={checked} onChange={(e) => onChange && onChange(e.target.checked)} />
             <span className={styles.slider}></span>
         </label>
     );

@@ -1,4 +1,4 @@
 export type PropsType = {
     checked: boolean;
-    onChange: (checked: boolean) => void;
+    onChange?: (checked: boolean) => void;
 };
