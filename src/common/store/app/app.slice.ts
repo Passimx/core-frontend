@@ -1,5 +1,5 @@
-import { createSlice, type PayloadAction, current } from '@reduxjs/toolkit';
-import { AppStateType, TabEnum } from './types/state.type.ts';
+import { createSlice, current, type PayloadAction } from '@reduxjs/toolkit';
+import { AppStateType, SettingsType, TabEnum } from './types/state.type.ts';
 import type { EventsType } from '../../types/events/event-data.type.ts';
 import { JSX } from 'react';
 import { upsertAppIndexDb } from './index-db/hooks.ts';
@@ -11,7 +11,6 @@ const initialState: Partial<AppStateType> = {
     isActiveTab: false,
     pages: new Map<TabEnum, JSX.Element[]>([]),
     isStandalone: window.matchMedia('(display-mode: standalone)').matches,
-    allowNotifications: Notification?.permission,
     accounts: [],
 };
 
@@ -28,10 +27,11 @@ const AppSlice = createSlice({
                 keyof AppStateType,
                 AppStateType[keyof AppStateType],
             ][]) {
-                state[key] = value as never;
+                if (key === 'settings')
+                    state.settings = { ...current(state).settings, ...(value as Partial<SettingsType>) };
+                else state[key] = value as never;
             }
-            const cleanState = current(state);
-            if (state.activeTab && state.isLoadedFromIndexDb) upsertAppIndexDb(cleanState);
+            if (state.activeTab && state.isLoadedFromIndexDb) upsertAppIndexDb(current(state));
         },
     },
 });

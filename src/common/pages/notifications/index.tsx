@@ -3,91 +3,58 @@ import { PageTitle } from '../../components/page-title';
 import { useTranslation } from 'react-i18next';
 import styles from './index.module.css';
 import { Card } from '../../components/card';
-import { useAppSelector } from '../../store';
-import { setPushSubscriptionPayload } from '../../hooks/functions/set-push-subscription-payload.ts';
+import { addPushSubscription } from '../../hooks/functions/add-push-subscription.ts';
+import { useAppAction, useAppSelector } from '../../store';
+import { Checkbox } from '../../components/checkbox';
+import { hidePushSubscription } from '../../hooks/functions/hide-push-subscription.ts';
 
 export const Notifications: FC = () => {
     const { t } = useTranslation();
-    const { allowNotifications, settings } = useAppSelector((state) => state.app);
+    const { setStateApp } = useAppAction();
+    const pushAllAccounts = useAppSelector((state) => state.app.settings?.pushAllAccounts);
+    const notificationsSilent = useAppSelector((state) => state.app.settings?.notificationsSilent);
+    const pushSubscriptionPayload = useAppSelector((state) => state.app.settings?.pushSubscriptionPayload);
 
     const handleNotificationClick = async () => {
-        if (['default', 'prompt'].includes(allowNotifications!)) {
-            await Notification.requestPermission();
-            setPushSubscriptionPayload();
-        }
+        const permission = Notification?.permission;
 
-        if (Notification.permission === 'granted') {
-            new Notification('Заголовок уведомления', {
-                body: 'Текст уведомления...',
-                icon: 'https://png.pngtree.com/recommend-works/png-clipart/20250321/ourmid/pngtree-green-check-mark-icon-png-image_15808519.png',
-                badge: 'https://png.pngtree.com/recommend-works/png-clipart/20250321/ourmid/pngtree-green-check-mark-icon-png-image_15808519.png',
-                lang: settings?.lang,
-            });
-        }
+        if (permission !== 'granted') await Notification.requestPermission();
+
+        if (!pushSubscriptionPayload) addPushSubscription();
+        else hidePushSubscription();
     };
 
-    // const handleNotificationClick = async () => {
-    //
-    //     // КРИТИЧНО ДЛЯ SAFARI №1: Сервис-воркер ДОЛЖЕН быть готов до любых действий
-    //     const registration = rawApp.serviceWorkerRegistration;
-    //     if (!registration) {
-    //         console.error('Сервис-воркер не найден в rawApp');
-    //         return;
-    //     }
-    //
-    //     console.log(window.safari.pushNotification);
-    //     console.log(registration.pushManager);
-    //
-    //     // Если воркер ещё активируется, дожидаемся его готовности через нативный API
-    //     if (registration.active?.state !== 'activated') {
-    //         await navigator.serviceWorker.ready;
-    //     }
-    //
-    //     const pushManager = registration.pushManager;
-    //     if (!pushManager) {
-    //         console.error('PushManager не поддерживается данным браузером');
-    //         return;
-    //     }
-    //
-    //     // КРИТИЧНО ДЛЯ SAFARI №2: Запрос разрешения и подписка идут синхронным паровозом
-    //     try {
-    //         // Запрашиваем/проверяем окно (даже если уже granted, это подтверждает жест для Safari)
-    //         const permission = await Notification.requestPermission();
-    //         setStateApp({ allowNotifications: permission });
-    //
-    //         if (permission !== 'granted') {
-    //             console.warn('Пользователь отклонил запрос на уведомления');
-    //             return;
-    //         }
-    //
-    //         console.log(1); // Лог 1 отобразится
-    //
-    //         // Вызываем подписку сразу же
-    //         const subscription = await pushManager.subscribe({
-    //             userVisibleOnly: true,
-    //             applicationServerKey: urlBase64ToUint8Array(Envs.publicVapidKey),
-    //         });
-    //
-    //         console.log(2); // Теперь Safari успешно дойдет до Лога 2!
-    //         logger.info(subscription);
-    //
-    //         // Сохраняем payload в стор только после успешного завершения всей операции
-    //         setStateApp({ pushSubscriptionPayload: subscription.toJSON() });
-    //     } catch (error) {
-    //         console.error('Ошибка в процессе подписки Safari:', error);
-    //     }
-    // };
+    const onNotificationsSilent = () => {
+        setStateApp({ settings: { notificationsSilent: !notificationsSilent } });
+    };
+
+    const onPushAllAccounts = () => {
+        setStateApp({ settings: { pushAllAccounts: !pushAllAccounts } });
+    };
 
     return (
         <div className={styles.div0}>
             <PageTitle title={t('t79')} />
             <div className={styles.div1}>
-                {/* {(allowNotifications !== 'granted' || !pushSubscriptionPayload) && (*/}
-                <Card onClick={handleNotificationClick}>
-                    <div className={styles.div2}>
-                        <div className={styles.div3}>{t('t80')}</div>
-                        <div>{t('t81')}</div>
-                    </div>
+                {!pushSubscriptionPayload && (
+                    <Card onClick={handleNotificationClick}>
+                        <div className={styles.div2}>
+                            <div className={styles.div3}>{t('t80')}</div>
+                            <div>{t('t81')}</div>
+                        </div>
+                    </Card>
+                )}
+                <Card className={styles.div4}>
+                    <div>{t('t79')}</div>
+                    <Checkbox checked={!!pushSubscriptionPayload} onChange={handleNotificationClick} />
+                </Card>
+                <Card className={styles.div4}>
+                    <div>{t('t51')}</div>
+                    <Checkbox checked={!!pushAllAccounts} onChange={onPushAllAccounts} />
+                </Card>
+                <Card className={styles.div4}>
+                    <div>{t('t50')}</div>
+                    <Checkbox checked={!!notificationsSilent} onChange={onNotificationsSilent} />
                 </Card>
             </div>
         </div>

@@ -14,13 +14,6 @@ export type UserKeyType = {
     countTrafficUsed: number;
 };
 
-export type BalanceAccountType = {
-    rub: number;
-    cny: number;
-    ton: number;
-    usd: number;
-};
-
 export type UserStateType = {
     id: string;
     updatedAt: number;
@@ -37,7 +30,6 @@ export type UserStateType = {
     seedPhraseHash: string;
     seedPhrase: string;
 
-    balanceAccount: BalanceAccountType;
     keys: UserKeyType[];
     sessionId: string;
     sessions: Partial<SessionType>[];

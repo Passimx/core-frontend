@@ -2,6 +2,7 @@
     display: grid;
 
     .div1{
+        display: grid;
 
         .div2{
             display: grid;
@@ -11,6 +12,12 @@
                 font-weight: bold;
 
             }
+        }
+
+        .div4{
+            display: grid;
+            align-items: center;
+            grid-template-columns: 1fr auto;
         }
     }
 }

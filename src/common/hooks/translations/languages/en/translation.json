@@ -89,12 +89,11 @@
   "t23": "A reliable workhorse: stable access without traffic limits. Great for everyday use.",
   "t24": "Works during:\n - The most severe blocking\n - At factories\n - During whitelist modes\n - In parking lots\n\nIt has a data limit—therefore, it is recommended to purchase a standard plan alongside it.",
   "t25": "Enter the invitation link",
-  "t26": "An account is created without entering a login and password.\n\nTo avoid losing access, save the key file after creating your account.",
+  "t26": "An account is created without entering a login and password.",
   "t27": "VPN",
   "t28": "Chats",
   "t29": "Calls",
   "t30": "Data balance",
-
   "t31": "Account sessions",
   "t32": "Session",
   "t33": "Terminate session",
@@ -111,7 +110,15 @@
   "t44": "Point your camera at the QR code",
   "t45": "Log in with a passkey",
   "t46": "Connect device",
-  "t76": "Point your camera at the QR code",
+  "t47": "On",
+  "t48": "Off",
+  "t49": "To ensure you don't lose access, save the key file after creating your account.",
+  "t50": "Send notifications silently",
+  "t51": "Show notifications from all accounts",
+  "t76": "Point the camera at the QR code",
   "t77": "Select file",
-  "t78": "Drag and drop file here or click to upload"
+  "t78": "Drag and drop a file here or click to upload",
+  "t79": "Notifications",
+  "t80": "Turn on notifications",
+  "t81": "Notifications keep you informed about news, messages, reminders, or app updates, even when it is closed."
 }

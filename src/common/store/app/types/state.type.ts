@@ -1,5 +1,4 @@
 import { JSX } from 'react';
-import { CurrencyPrice } from '../../../types/api/currency-price.ts';
 import { UserStateType } from '../../user/types/state.type.ts';
 
 export enum TabEnum {
@@ -17,8 +16,9 @@ export enum PeriodEnum {
 
 export type SettingsType = {
     lang: string;
-    currency: string;
-    currencyPrice: CurrencyPrice;
+    pushSubscriptionPayload: PushSubscriptionJSON;
+    notificationsSilent: boolean;
+    pushAllAccounts: boolean;
 };
 
 export type IframeType = {
@@ -45,7 +45,4 @@ export type AppStateType = {
     settings: Partial<SettingsType>;
     activeAccount: string;
     accounts: Partial<UserStateType>[];
-
-    allowNotifications: PermissionState | NotificationPermission;
-    pushSubscriptionPayload: PushSubscriptionJSON;
 };

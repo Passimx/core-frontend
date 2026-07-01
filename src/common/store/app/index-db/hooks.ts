@@ -5,7 +5,6 @@ export const upsertAppIndexDb = (payload: Partial<AppStateType>) => {
     const copyPayload: Partial<AppStateType> = {
         activeAccount: payload.activeAccount,
         settings: payload.settings,
-        pushSubscriptionPayload: payload.pushSubscriptionPayload,
     };
 
     openRequest.onupgradeneeded = () => {

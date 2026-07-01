@@ -20,7 +20,7 @@ export const Profile: FC = () => {
     const setPage = useSetPage();
     const sessions = useAppSelector((state) => state.user.sessions);
     const accounts = useAppSelector((state) => state.app.accounts);
-    const allowNotifications = useAppSelector((state) => state.app.allowNotifications);
+    const pushSubscriptionPayload = useAppSelector((state) => state.app.settings?.pushSubscriptionPayload);
 
     return (
         <div className={styles.background}>
@@ -88,7 +88,7 @@ export const Profile: FC = () => {
                                 <IoNotifications className={styles.div4} />
                             </div>
                             <div>{t('t79')}</div>
-                            <div className={styles.div5}>{allowNotifications === 'granted' ? t('t47') : t('t48')}</div>
+                            <div className={styles.div5}>{pushSubscriptionPayload ? t('t47') : t('t48')}</div>
                         </div>
                         <div className={styles.div2} onClick={() => setPage(<Languages />)}>
                             <div className={styles.div3} style={{ backgroundColor: '#ff8533' }}>

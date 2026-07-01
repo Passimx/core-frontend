@@ -1,4 +1,0 @@
-export type PropsType = {
-    kind: string;
-    keyId: string;
-};

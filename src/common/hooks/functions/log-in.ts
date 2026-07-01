@@ -37,7 +37,7 @@ export const logIn = async (payload: Partial<UserStateType>) => {
         seedPhraseHash,
         userId,
         encryptionUserAgent,
-        pushSubscriptionPayload: app.pushSubscriptionPayload,
+        pushSubscriptionPayload: app.settings?.pushSubscriptionPayload,
         lang: app.settings?.lang,
     });
     if (!response) return error();

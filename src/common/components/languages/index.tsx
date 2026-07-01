@@ -11,7 +11,13 @@ export const Languages: FC = () => {
     const languages = Object.keys(resources);
     const { postMessageToBroadCastChannel } = useAppAction();
     const lang = useAppSelector((state) => state.app.settings?.lang);
-    const settings = useAppSelector((state) => state.app.settings)!;
+
+    const onChangeLang = (lang: string) => {
+        postMessageToBroadCastChannel({
+            event: EventsEnum.SET_STATE_APP,
+            data: { settings: { lang } },
+        });
+    };
 
     return (
         <div className={styles.background}>
@@ -21,12 +27,7 @@ export const Languages: FC = () => {
                     <div
                         key={language}
                         className={`${styles.language_item} ${lang === language && styles.language_item_active}`}
-                        onClick={() =>
-                            postMessageToBroadCastChannel({
-                                event: EventsEnum.SET_STATE_APP,
-                                data: { settings: { ...settings, lang: language } },
-                            })
-                        }
+                        onClick={() => onChangeLang(language)}
                     >
                         {t('language_native_flag', { lng: language })} {t('language_native', { lng: language })}
                         <div

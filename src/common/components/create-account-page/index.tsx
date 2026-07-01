@@ -39,7 +39,7 @@ export const CreateAccountPage: FC = () => {
             rsaPublicKey,
             encryptionUserAgent,
             seedPhraseHash,
-            pushSubscriptionPayload: appState.pushSubscriptionPayload,
+            pushSubscriptionPayload: appState.settings?.pushSubscriptionPayload,
             lang: appState.settings?.lang,
         });
 
@@ -84,6 +84,8 @@ export const CreateAccountPage: FC = () => {
                 <div className={styles.div1}>
                     <Card>
                         <div>{t('t26')}</div>
+                        <br />
+                        <div>{t('t49')}</div>
                     </Card>
                     <Button text={t('create_by_passimx')} className={styles.div2} onClick={create} />
                 </div>

@@ -6,7 +6,6 @@ import { CryptoService } from '../../services/crypto.service.ts';
 
 export const useNotifications = () => {
     const { setStateApp } = useAppAction();
-
     const { isActiveTab, accounts, connectionId } = useAppSelector((state) => state.app);
 
     const start = async () => {
