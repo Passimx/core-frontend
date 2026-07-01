@@ -11,6 +11,7 @@ const initialState: Partial<AppStateType> = {
     isActiveTab: false,
     pages: new Map<TabEnum, JSX.Element[]>([]),
     isStandalone: window.matchMedia('(display-mode: standalone)').matches,
+    allowNotifications: Notification?.permission,
     accounts: [],
 };
 
