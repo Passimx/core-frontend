@@ -56,7 +56,9 @@ export const Notifications: FC = () => {
                 )}
                 <br />
                 <Card className={styles.div4}>
-                    <div>{t('t79')}</div>
+                    <div>
+                        {t('t79')} {Notification.permission}
+                    </div>
                     <Checkbox checked={!!pushSubscriptionPayload} onChange={handleNotificationClick} />
                 </Card>
                 <br />
